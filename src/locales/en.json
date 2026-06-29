@@ -1,0 +1,257 @@
+{
+  "nav": {
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "services": "Services",
+    "about": "About",
+    "process": "Our Process",
+    "testimonials": "Testimonials",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "calculator": "Cost Calculator",
+    "book": "Book Consultation"
+  },
+  "hero": {
+    "office": "Sardini Studio",
+    "tagline": "Designing the Space You Dream Of",
+    "subtitle": "Architecture that unites heritage with modernity — we craft spaces that reflect your personality and inspire your lifestyle.",
+    "cta_portfolio": "View Our Work",
+    "cta_consult": "Book a Consultation",
+    "scroll_down": "Discover More"
+  },
+  "stats": {
+    "projects": "Projects Completed",
+    "years": "Years of Experience",
+    "clients": "Satisfied Clients",
+    "awards": "Excellence Awards"
+  },
+  "featured": {
+    "title": "Featured Projects",
+    "subtitle": "A selection of our work reflecting our vision of merging aesthetics with function",
+    "view_all": "View All Projects",
+    "view_project": "View Project"
+  },
+  "services_preview": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive architectural solutions from concept to completion",
+    "view_all": "View All Services"
+  },
+  "partners": {
+    "title": "Our Partners"
+  },
+  "testimonials_preview": {
+    "title": "What Our Clients Say",
+    "subtitle": "Real stories from clients who trusted us to bring their vision to life",
+    "view_all": "View All Testimonials"
+  },
+  "cta_section": {
+    "title": "Ready to Turn Your Vision Into Reality?",
+    "subtitle": "Contact us today to discuss your project and get a free consultation",
+    "btn_contact": "Contact Us",
+    "btn_book": "Book an Appointment"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Over 10 years of architectural creativity across Syria and the region",
+    "all": "All",
+    "residential": "Residential",
+    "commercial": "Commercial",
+    "interior": "Interior Design",
+    "exterior": "Exterior Design",
+    "hospitality": "Hospitality",
+    "no_results": "No projects in this category",
+    "view_details": "View Details"
+  },
+  "project_detail": {
+    "location": "Location",
+    "area": "Area",
+    "year": "Year",
+    "services": "Services Provided",
+    "description": "Project Description",
+    "gallery": "Photo Gallery",
+    "before_after": "Before & After",
+    "before": "Before",
+    "after": "After",
+    "back": "Back to Portfolio",
+    "related": "Related Projects",
+    "sqm": "m²"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Integrated design solutions for all your architectural needs",
+    "architectural": {
+      "name": "Architectural Design",
+      "desc": "Creative architectural designs that blend beauty and function, considering the surrounding environment.",
+      "details": "We provide comprehensive designs from initial concepts to full execution drawings, with attention to every detail."
+    },
+    "interior": {
+      "name": "Interior Design",
+      "desc": "Interior designs that reflect your personality and transform your space into an ideal living environment.",
+      "details": "We specialize in selecting materials, colors, and furniture to create comfortable, elegant atmospheres tailored to your taste."
+    },
+    "exterior": {
+      "name": "Exterior Design",
+      "desc": "Distinctive architectural facades that give your building an exceptional character.",
+      "details": "From structural systems to exterior materials and lighting, we ensure integrated and harmonious design."
+    },
+    "supervision": {
+      "name": "Executive Supervision",
+      "desc": "Professional specialized supervision ensuring your project is executed to the highest quality standards.",
+      "details": "Our team monitors every phase of construction to ensure contractors adhere to designs and specifications."
+    },
+    "rendering": {
+      "name": "3D Visualization",
+      "desc": "Realistic 3D visualizations giving you a clear view of your project before execution.",
+      "details": "We use the latest 3D rendering and VR technologies to provide an immersive experience of your project."
+    },
+    "consulting": {
+      "name": "Architectural Consulting",
+      "desc": "Specialized consultations to help you make the right architectural decisions.",
+      "details": "Whether building, renovating, or planning, our consultations ensure you save time and money."
+    },
+    "learn_more": "Learn More",
+    "get_quote": "Get a Quote"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "A journey of architectural passion toward excellence and innovation",
+    "bio_title": "Bilal Sardini",
+    "bio_role": "Founder & Director of Sardini Studio",
+    "bio_text": "A specialized architect with over 10 years of experience in designing residential, commercial, and hospitality projects. A graduate of the Faculty of Architecture at Damascus University, he founded Sardini Studio with a clear vision: merging Arab heritage with global modernity to create exceptional spaces that endure.",
+    "philosophy_title": "Design Philosophy",
+    "philosophy_text": "We believe every project is a unique story deserving to be told in a distinctive architectural language. We design for people first, with deep respect for the environment and local cultural identity.",
+    "experience": "Years of Experience",
+    "projects_done": "Projects Completed",
+    "team_size": "Team Members",
+    "timeline_title": "Our Journey",
+    "education": "Education",
+    "certifications": "Professional Certifications"
+  },
+  "process": {
+    "title": "How We Work",
+    "subtitle": "A clear and transparent methodology from the first meeting to final delivery",
+    "step1": { "title": "Initial Consultation", "desc": "We listen to your vision and goals and fully understand your needs" },
+    "step2": { "title": "Conceptual Design", "desc": "We develop creative ideas and present multiple design proposals" },
+    "step3": { "title": "3D Visualization", "desc": "We transform the design into a realistic, detailed 3D visualization" },
+    "step4": { "title": "Execution Drawings", "desc": "We prepare precise engineering drawings for all execution phases" },
+    "step5": { "title": "Site Supervision", "desc": "We oversee execution and monitor every detail with precision" },
+    "step6": { "title": "Final Delivery", "desc": "We deliver an integrated project that exceeds your expectations" }
+  },
+  "testimonials": {
+    "title": "Client Testimonials",
+    "subtitle": "Our clients' trust is the most important award we receive"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Ideas and inspiration from the world of architecture and design",
+    "read_more": "Read More",
+    "min_read": "min read",
+    "categories": "Categories",
+    "recent": "Recent Posts",
+    "share": "Share",
+    "back": "Back to Blog"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to the most common questions from our clients"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're here to realize your architectural vision — reach out today",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "project_type": "Project Type",
+    "message": "Your Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Your message has been sent! We'll be in touch soon.",
+    "error": "An error occurred. Please try again.",
+    "address": "Address",
+    "address_value": "Aleppo, Syria",
+    "phone_label": "Phone",
+    "email_label": "Email",
+    "hours": "Working Hours",
+    "hours_value": "Sat–Thu: 9 AM – 6 PM",
+    "whatsapp": "Contact via WhatsApp",
+    "select_type": "Select project type",
+    "residential": "Residential",
+    "commercial": "Commercial",
+    "interior": "Interior Design",
+    "exterior": "Exterior Design",
+    "hospitality": "Hospitality",
+    "other": "Other",
+    "required": "This field is required",
+    "invalid_email": "Invalid email address",
+    "invalid_phone": "Invalid phone number"
+  },
+  "calculator": {
+    "title": "Cost Estimator",
+    "subtitle": "Get a preliminary estimate for your project cost",
+    "area": "Area (m²)",
+    "type": "Project Type",
+    "quality": "Finish Level",
+    "standard": "Economy",
+    "premium": "Premium",
+    "luxury": "Luxury",
+    "calculate": "Calculate Estimate",
+    "result_title": "Preliminary Estimate",
+    "disclaimer": "This estimate is approximate only. For an accurate quote, please contact us.",
+    "contact_us": "Get an Accurate Quote",
+    "per_sqm": "Price per m²",
+    "total": "Estimated Total Cost",
+    "currency": "SYP"
+  },
+  "book": {
+    "title": "Book a Consultation",
+    "subtitle": "Talk to our architect and get a free consultation",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "date": "Preferred Date",
+    "time": "Preferred Time",
+    "project_type": "Project Type",
+    "notes": "Additional Notes",
+    "submit": "Confirm Booking",
+    "success": "Your appointment has been booked! We'll contact you to confirm.",
+    "morning": "Morning (9–12)",
+    "afternoon": "Afternoon (12–3)",
+    "evening": "Evening (3–6)"
+  },
+  "footer": {
+    "description": "Sardini Studio is an architectural firm specializing in designing spaces that unite beauty with function.",
+    "quick_links": "Quick Links",
+    "services": "Services",
+    "contact": "Contact",
+    "newsletter": "Newsletter",
+    "newsletter_text": "Subscribe to receive our latest projects and articles",
+    "subscribe": "Subscribe",
+    "email_placeholder": "Your email address",
+    "rights": "All rights reserved",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try Again",
+    "back_to_top": "Back to Top",
+    "dark_mode": "Dark Mode",
+    "light_mode": "Light Mode",
+    "lang_switch": "العربية",
+    "close": "Close",
+    "prev": "Previous",
+    "next": "Next",
+    "search": "Search",
+    "no_results": "No results found",
+    "see_more": "See More",
+    "whatsapp": "WhatsApp"
+  },
+  "not_found": {
+    "title": "404",
+    "subtitle": "Page Not Found",
+    "text": "Sorry, the page you're looking for doesn't exist or has been moved.",
+    "back_home": "Back to Home"
+  }
+}
