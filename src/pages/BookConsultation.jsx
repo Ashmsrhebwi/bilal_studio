@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Calendar, CheckCircle } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
 import { bookingService } from '../services';
 import SectionTitle from '../components/ui/SectionTitle';
 
@@ -19,6 +20,7 @@ const schema = z.object({
 });
 
 export default function BookConsultation() {
+  useSEO({ titleKey: 'seo.book_title', descKey: 'seo.book_desc' });
   const { t } = useTranslation();
   const [done, setDone] = useState(false);
 

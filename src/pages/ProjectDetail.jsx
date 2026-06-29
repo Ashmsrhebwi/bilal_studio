@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { MapPin, Calendar, Maximize2, ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
+import SchemaOrg, { buildProjectSchema } from '../components/SEO/SchemaOrg';
 import { projectsService } from '../services/projectsService';
 import Lightbox from '../components/portfolio/Lightbox';
 import ProjectCard from '../components/portfolio/ProjectCard';
@@ -30,6 +32,13 @@ export default function ProjectDetail() {
     queryFn: projectsService.getAll,
   });
 
+  useSEO({
+    titleFallback: project ? (lang === 'ar' ? project.title_ar : project.title_en) : '',
+    descFallback: project ? (lang === 'ar' ? project.description_ar : project.description_en) : '',
+    ogImage: project?.cover,
+    canonical: `https://sardinistudio.com/portfolio/${slug}`,
+  });
+
   if (isLoading) return (
     <div className="pt-24 pb-20 flex items-center justify-center min-h-screen">
       <div className="w-10 h-10 border-2 rounded-full animate-spin" style={{ borderColor: 'transparent', borderTopColor: '#C9A14A' }} />
@@ -40,9 +49,18 @@ export default function ProjectDetail() {
 
   const related = allProjects.filter((p) => p.category === project.category && p.id !== project.id).slice(0, 3);
   const openLightbox = (i) => { setLightboxIndex(i); setLightboxOpen(true); };
+  const projectSchema = buildProjectSchema({
+    name: lang === 'ar' ? project.title_ar : project.title_en,
+    description: lang === 'ar' ? project.description_ar : project.description_en,
+    slug,
+    image: project.cover,
+    completionYear: project.year,
+    location: lang === 'ar' ? project.location_ar : project.location_en,
+  });
 
   return (
     <main className="pt-24 pb-20">
+      <SchemaOrg type="creative-work" data={projectSchema} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <Link

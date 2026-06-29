@@ -2,12 +2,14 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Building2, Sofa, Layers, HardHat, Box, MessageSquare, ArrowRight, ArrowLeft } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
 import SectionTitle from '../components/ui/SectionTitle';
 
 const serviceKeys = ['architectural', 'interior', 'exterior', 'supervision', 'rendering', 'consulting'];
 const serviceIcons = [Building2, Sofa, Layers, HardHat, Box, MessageSquare];
 
 export default function Services() {
+  useSEO({ titleKey: 'seo.services_title', descKey: 'seo.services_desc' });
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
   const Arrow = isRTL ? ArrowLeft : ArrowRight;

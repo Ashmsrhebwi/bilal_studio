@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
 import { contactService } from '../services';
 import SectionTitle from '../components/ui/SectionTitle';
 import { WHATSAPP_NUMBER } from '../api/config';
@@ -18,6 +19,7 @@ const schema = z.object({
 });
 
 export default function Contact() {
+  useSEO({ titleKey: 'seo.contact_title', descKey: 'seo.contact_desc' });
   const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState('');

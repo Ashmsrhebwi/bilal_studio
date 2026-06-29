@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+Disallow: /api/
+Disallow: /admin/
+Disallow: /book-consultation-confirm
+Disallow: /*?*
+
+Crawl-delay: 1
+
+Sitemap: https://sardinistudio.com/sitemap.xml

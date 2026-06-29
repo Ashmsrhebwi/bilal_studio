@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Award, Users, Briefcase, GraduationCap } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
+import SchemaOrg from '../components/SEO/SchemaOrg';
 import SectionTitle from '../components/ui/SectionTitle';
 import LazyImage from '../components/ui/LazyImage';
 
@@ -16,6 +18,7 @@ const timeline = [
 ];
 
 export default function About() {
+  useSEO({ titleKey: 'seo.about_title', descKey: 'seo.about_desc' });
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
 
@@ -28,6 +31,7 @@ export default function About() {
 
   return (
     <main className="pt-24 pb-20">
+      <SchemaOrg type="business" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle title={t('about.title')} subtitle={t('about.subtitle')} />
 

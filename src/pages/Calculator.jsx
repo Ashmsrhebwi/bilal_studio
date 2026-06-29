@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Calculator as CalcIcon, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useSEO } from '../hooks/useSEO';
 import SectionTitle from '../components/ui/SectionTitle';
 
 const schema = z.object({
@@ -22,6 +23,7 @@ const RATES = {
 };
 
 export default function Calculator() {
+  useSEO({ titleKey: 'seo.calculator_title', descKey: 'seo.calculator_desc' });
   const { t } = useTranslation();
   const [result, setResult] = useState(null);
 

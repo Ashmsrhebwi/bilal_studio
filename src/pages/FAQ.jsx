@@ -1,10 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
+import { useSEO } from '../hooks/useSEO';
 import { faqService } from '../services';
 import SectionTitle from '../components/ui/SectionTitle';
 import { Accordion } from '../components/ui/Accordion';
 
 export default function FAQ() {
+  useSEO({ titleKey: 'seo.faq_title', descKey: 'seo.faq_desc' });
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
 

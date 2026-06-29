@@ -2,10 +2,12 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
+import { useSEO } from '../hooks/useSEO';
 import { testimonialsService } from '../services';
 import SectionTitle from '../components/ui/SectionTitle';
 
 export default function Testimonials() {
+  useSEO({ titleKey: 'seo.testimonials_title', descKey: 'seo.testimonials_desc' });
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
 

@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { Calendar, Clock, ArrowLeft, ArrowRight, Share2 } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
+import SchemaOrg, { buildArticleSchema } from '../components/SEO/SchemaOrg';
 import { blogService } from '../services';
 import LazyImage from '../components/ui/LazyImage';
 
@@ -18,13 +20,29 @@ export default function BlogPost() {
     queryFn: () => blogService.getBySlug(slug),
   });
 
+  useSEO({
+    titleFallback: post ? (lang === 'ar' ? post.meta_title_ar || post.title_ar : post.meta_title_en || post.title_en) : '',
+    descFallback: post ? (lang === 'ar' ? post.meta_description_ar || post.excerpt_ar : post.meta_description_en || post.excerpt_en) : '',
+    ogImage: post?.image,
+    ogType: 'article',
+    canonical: `https://sardinistudio.com/blog/${slug}`,
+  });
+
   if (isLoading) return <div className="pt-24 flex items-center justify-center min-h-screen"><div className="w-10 h-10 border-2 rounded-full animate-spin" style={{ borderColor: 'transparent', borderTopColor: '#C9A14A' }} /></div>;
   if (!post) return <Navigate to="/blog" replace />;
 
   const content = lang === 'ar' ? post.content_ar : post.content_en;
+  const articleSchema = buildArticleSchema({
+    title: lang === 'ar' ? post.title_ar : post.title_en,
+    description: lang === 'ar' ? post.excerpt_ar : post.excerpt_en,
+    slug,
+    publishedAt: post.date,
+    image: post.image,
+  });
 
   return (
     <main className="pt-24 pb-20">
+      <SchemaOrg type="article" data={articleSchema} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <Link to="/blog" className="inline-flex items-center gap-2 text-sm mb-8 transition-colors" style={{ color: 'var(--color-text-secondary)' }}>
           <BackArrow size={16} />

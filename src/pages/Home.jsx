@@ -1,4 +1,6 @@
 import { lazy, Suspense } from 'react';
+import { useSEO } from '../hooks/useSEO';
+import SchemaOrg from '../components/SEO/SchemaOrg';
 import Hero from '../components/home/Hero';
 import Stats from '../components/home/Stats';
 
@@ -11,8 +13,11 @@ const CTASection = lazy(() => import('../components/home/CTASection'));
 const Fallback = () => <div className="py-20" />;
 
 export default function Home() {
+  useSEO({ titleKey: 'seo.home_title', descKey: 'seo.home_desc' });
+
   return (
     <main>
+      <SchemaOrg type="business" />
       <Hero />
       <Stats />
       <Suspense fallback={<Fallback />}><FeaturedProjects /></Suspense>

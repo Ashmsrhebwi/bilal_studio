@@ -1,11 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { MessageCircle, Lightbulb, Box, FileText, HardHat, CheckCircle2 } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
 import SectionTitle from '../components/ui/SectionTitle';
 
 const stepIcons = [MessageCircle, Lightbulb, Box, FileText, HardHat, CheckCircle2];
 
 export default function Process() {
+  useSEO({ titleKey: 'seo.process_title', descKey: 'seo.process_desc' });
   const { t } = useTranslation();
 
   const steps = Array.from({ length: 6 }, (_, i) => ({

@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { Calendar, Clock } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
 import { blogService } from '../services';
 import SectionTitle from '../components/ui/SectionTitle';
 import LazyImage from '../components/ui/LazyImage';
 
 export default function Blog() {
+  useSEO({ titleKey: 'seo.blog_title', descKey: 'seo.blog_desc' });
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
+import { useSEO } from '../hooks/useSEO';
 import { projectsService } from '../services/projectsService';
 import SectionTitle from '../components/ui/SectionTitle';
 import ProjectCard from '../components/portfolio/ProjectCard';
@@ -9,6 +10,7 @@ import ProjectCard from '../components/portfolio/ProjectCard';
 const CATEGORIES = ['all', 'residential', 'commercial', 'interior', 'exterior', 'hospitality'];
 
 export default function Portfolio() {
+  useSEO({ titleKey: 'seo.portfolio_title', descKey: 'seo.portfolio_desc' });
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('all');
 
