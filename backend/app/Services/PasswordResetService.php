@@ -28,8 +28,14 @@ class PasswordResetService
 
         $resetUrl = config('app.frontend_url', env('FRONTEND_URL')) . '/admin/reset-password?token=' . $token . '&email=' . urlencode($email);
 
-        Notification::route('mail', $email)
-            ->notify(new PasswordResetNotification($resetUrl, $this->expiryMinutes));
+        // Best-effort: a mail outage must not turn into a 500 here, since that
+        // would leak (via status code) whether $email is the admin account.
+        try {
+            Notification::route('mail', $email)
+                ->notify(new PasswordResetNotification($resetUrl, $this->expiryMinutes));
+        } catch (\Throwable $e) {
+            report($e);
+        }
 
         return true;
     }

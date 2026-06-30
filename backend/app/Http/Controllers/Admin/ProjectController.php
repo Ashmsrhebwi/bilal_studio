@@ -139,10 +139,13 @@ class ProjectController extends Controller
         $request->validate(['image_path' => 'required|string']);
         $path = $request->image_path;
 
-        $images = collect($project->gallery_images ?? [])
-            ->filter(fn($p) => $p !== $path)
-            ->values()
-            ->toArray();
+        $gallery = collect($project->gallery_images ?? []);
+
+        if (! $gallery->contains($path)) {
+            return response()->json(['success' => false, 'message' => 'الصورة غير موجودة في معرض هذا المشروع.'], 404);
+        }
+
+        $images = $gallery->filter(fn($p) => $p !== $path)->values()->toArray();
 
         Storage::disk('public')->delete($path);
         $project->update(['gallery_images' => $images]);

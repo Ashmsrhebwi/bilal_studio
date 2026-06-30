@@ -38,7 +38,7 @@ class GenericCrudController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        $data = $request->validate($this->rules);
+        $data = $request->validate($this->rules(null));
         $data = $this->handleImages($request, $data);
 
         $item = $this->modelClass::create($data);
@@ -55,12 +55,20 @@ class GenericCrudController extends Controller
     public function update(Request $request, int $id): JsonResponse
     {
         $item = $this->modelClass::findOrFail($id);
-        $data = $request->validate($this->rules);
+        $data = $request->validate($this->rules($id));
         $data = $this->handleImages($request, $data, $item);
 
         $item->update($data);
 
         return response()->json(['success' => true, 'data' => $item->fresh()]);
+    }
+
+    /**
+     * Override in subclasses to add dynamic rules (e.g. unique:...,slug,{id}).
+     */
+    protected function rules(?int $id = null): array
+    {
+        return $this->rules;
     }
 
     public function destroy(int $id): JsonResponse

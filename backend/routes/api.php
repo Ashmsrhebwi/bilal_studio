@@ -87,9 +87,9 @@ Route::prefix('v1')->group(function () {
         Route::middleware('throttle:login')->group(function () {
             Route::post('login', [AuthController::class, 'login']);
             Route::post('verify-otp', [AuthController::class, 'verifyOtp']);
+            Route::post('reset-password', [AuthController::class, 'resetPassword']);
         });
         Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
-        Route::post('reset-password', [AuthController::class, 'resetPassword']);
     });
 
     /*

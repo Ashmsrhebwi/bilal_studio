@@ -4,9 +4,10 @@ import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useQuery } from '@tanstack/react-query';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
 import { useSEO } from '../hooks/useSEO';
-import { contactService } from '../services';
+import { contactService, settingsService } from '../services';
 import SectionTitle from '../components/ui/SectionTitle';
 import { WHATSAPP_NUMBER } from '../api/config';
 
@@ -20,9 +21,20 @@ const schema = z.object({
 
 export default function Contact() {
   useSEO({ titleKey: 'seo.contact_title', descKey: 'seo.contact_desc' });
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState('');
+
+  const { data: settings } = useQuery({
+    queryKey: ['settings'],
+    queryFn: settingsService.get,
+  });
+  const contact = settings?.contact || settings || {};
+  const phone = contact.phone || '+963 21 234 5678';
+  const contactEmail = contact.email || 'info@sardinistudio.com';
+  const address = (lang === 'ar' ? contact.address_ar : contact.address_en) || t('contact.address_value');
+  const mapsUrl = contact.google_maps_url || 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d103310.62568684296!2d37.09000!3d36.20261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1531e57f5e89a7b5%3A0x3e3c4fee3d0eb85f!2sAleppo%2C%20Syria!5e0!3m2!1sen!2s!4v1693000000000!5m2!1sen!2s';
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: zodResolver(schema),
@@ -42,9 +54,9 @@ export default function Contact() {
   const inputStyle = (hasError) => ({ borderColor: hasError ? '#ef4444' : 'var(--color-border)', color: 'var(--color-text)' });
 
   const contactInfo = [
-    { icon: MapPin, label: t('contact.address'), value: t('contact.address_value') },
-    { icon: Phone, label: t('contact.phone_label'), value: '+963 21 234 5678', href: 'tel:+963212345678' },
-    { icon: Mail, label: t('contact.email_label'), value: 'info@sardinistudio.com', href: 'mailto:info@sardinistudio.com' },
+    { icon: MapPin, label: t('contact.address'), value: address },
+    { icon: Phone, label: t('contact.phone_label'), value: phone, href: `tel:${phone}` },
+    { icon: Mail, label: t('contact.email_label'), value: contactEmail, href: `mailto:${contactEmail}` },
     { icon: Clock, label: t('contact.hours'), value: t('contact.hours_value') },
   ];
 
@@ -148,7 +160,7 @@ export default function Contact() {
             <div className="aspect-video overflow-hidden" style={{ border: '1px solid var(--color-border)' }}>
               <iframe
                 title="Sardini Studio Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d103310.62568684296!2d37.09000!3d36.20261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1531e57f5e89a7b5%3A0x3e3c4fee3d0eb85f!2sAleppo%2C%20Syria!5e0!3m2!1sen!2s!4v1693000000000!5m2!1sen!2s"
+                src={mapsUrl}
                 className="w-full h-full"
                 loading="lazy"
                 style={{ filter: 'grayscale(1) contrast(1.1)' }}

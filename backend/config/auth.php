@@ -114,4 +114,19 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Panel Single-Account Credentials
+    |--------------------------------------------------------------------------
+    |
+    | The admin panel only allows one account, identified by ADMIN_EMAIL.
+    | Its password hash is either set via ADMIN_PASSWORD_HASH or, after a
+    | password reset, persisted in the site_settings table.
+    |
+    */
+
+    'admin_email' => env('ADMIN_EMAIL'),
+    'admin_password_hash' => env('ADMIN_PASSWORD_HASH'),
+    'otp_max_attempts' => env('OTP_MAX_ATTEMPTS', 5),
+
 ];

@@ -10,7 +10,7 @@ import { useSEO } from '../hooks/useSEO';
 import SectionTitle from '../components/ui/SectionTitle';
 
 const schema = z.object({
-  area: z.coerce.number().min(50, 'المساحة يجب أن تكون 50م² على الأقل'),
+  area: z.coerce.number().min(50, 'min_area'),
   type: z.string().min(1, 'required'),
   quality: z.string().min(1, 'required'),
 });
@@ -24,7 +24,7 @@ const RATES = {
 
 export default function Calculator() {
   useSEO({ titleKey: 'seo.calculator_title', descKey: 'seo.calculator_desc' });
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [result, setResult] = useState(null);
 
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(schema) });
@@ -34,7 +34,7 @@ export default function Calculator() {
     setResult({ total: area * rate, rate, area });
   };
 
-  const fmt = (n) => n.toLocaleString('ar-SY');
+  const fmt = (n) => n.toLocaleString(i18n.language === 'ar' ? 'ar-SY' : 'en-US');
 
   return (
     <main className="pt-24 pb-20">
@@ -49,13 +49,13 @@ export default function Calculator() {
                 {...register('area')}
                 type="number"
                 min="50"
-                placeholder="مثال: 300"
+                placeholder={t('calculator.area_placeholder')}
                 className="w-full px-4 py-3 bg-transparent border outline-none transition-colors"
                 style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
                 onFocus={e => e.target.style.borderColor = '#C9A14A'}
                 onBlur={e => e.target.style.borderColor = 'var(--color-border)'}
               />
-              {errors.area && <p className="text-xs text-red-500 mt-1">{errors.area.message}</p>}
+              {errors.area && <p className="text-xs text-red-500 mt-1">{t(`calculator.${errors.area.message}`)}</p>}
             </div>
 
             <div>
@@ -116,7 +116,7 @@ export default function Calculator() {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span style={{ color: 'var(--color-text-secondary)' }}>{t('calculator.area')}</span>
-                    <span className="font-semibold" style={{ color: 'var(--color-text)' }}>{result.area} م²</span>
+                    <span className="font-semibold" style={{ color: 'var(--color-text)' }}>{result.area} {t('project_detail.sqm')}</span>
                   </div>
                   <div
                     className="flex justify-between pt-3 mt-3 font-bold text-lg"

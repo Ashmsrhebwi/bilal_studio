@@ -20,7 +20,7 @@ class TeamMemberAdminController extends GenericCrudController
         'role_en'        => 'nullable|string|max:100',
         'bio_ar'         => 'nullable|string',
         'bio_en'         => 'nullable|string',
-        'photo'          => 'nullable|image|max:5120',
+        'photo'          => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:5120',
         'certifications' => 'nullable|array',
         'linkedin_url'   => 'nullable|url',
         'is_founder'     => 'boolean',

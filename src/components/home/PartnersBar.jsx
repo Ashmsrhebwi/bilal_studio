@@ -1,9 +1,17 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { mockPartners } from '../../api/mock/data';
+import { useQuery } from '@tanstack/react-query';
+import { partnersService } from '../../services';
 
 export default function PartnersBar() {
   const { t } = useTranslation();
+
+  const { data: partners = [] } = useQuery({
+    queryKey: ['partners'],
+    queryFn: partnersService.getAll,
+  });
+
+  if (partners.length === 0) return null;
 
   return (
     <section className="py-14" style={{ background: 'var(--color-bg)', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
@@ -12,7 +20,7 @@ export default function PartnersBar() {
           {t('partners.title')}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
-          {mockPartners.map((p, i) => (
+          {partners.map((p, i) => (
             <motion.div
               key={p.id}
               initial={{ opacity: 0 }}

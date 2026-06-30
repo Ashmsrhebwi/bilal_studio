@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
@@ -6,12 +6,12 @@ import { useSEO } from '../hooks/useSEO';
 import { projectsService } from '../services/projectsService';
 import SectionTitle from '../components/ui/SectionTitle';
 import ProjectCard from '../components/portfolio/ProjectCard';
-
-const CATEGORIES = ['all', 'residential', 'commercial', 'interior', 'exterior', 'hospitality'];
+import { getCategorySlug, getCategoryLabel } from '../utils/category';
 
 export default function Portfolio() {
   useSEO({ titleKey: 'seo.portfolio_title', descKey: 'seo.portfolio_desc' });
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
   const [activeCategory, setActiveCategory] = useState('all');
 
   const { data: projects = [], isLoading } = useQuery({
@@ -19,9 +19,18 @@ export default function Portfolio() {
     queryFn: projectsService.getAll,
   });
 
+  const categories = useMemo(() => {
+    const seen = new Map();
+    for (const p of projects) {
+      const slug = getCategorySlug(p.category);
+      if (slug && !seen.has(slug)) seen.set(slug, p.category);
+    }
+    return Array.from(seen.entries());
+  }, [projects]);
+
   const filtered = activeCategory === 'all'
     ? projects
-    : projects.filter((p) => p.category === activeCategory);
+    : projects.filter((p) => getCategorySlug(p.category) === activeCategory);
 
   return (
     <main className="pt-24 pb-20">
@@ -30,18 +39,29 @@ export default function Portfolio() {
 
         {/* Filter Tabs */}
         <div className="flex flex-wrap gap-2 mb-10">
-          {CATEGORIES.map((cat) => (
+          <button
+            onClick={() => setActiveCategory('all')}
+            className="px-4 py-2 text-sm font-medium transition-all border"
+            style={{
+              borderColor: activeCategory === 'all' ? '#C9A14A' : 'var(--color-border)',
+              background: activeCategory === 'all' ? '#C9A14A' : 'transparent',
+              color: activeCategory === 'all' ? '#0E0E0E' : 'var(--color-text-secondary)',
+            }}
+          >
+            {t('portfolio.all')}
+          </button>
+          {categories.map(([slug, category]) => (
             <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
+              key={slug}
+              onClick={() => setActiveCategory(slug)}
               className="px-4 py-2 text-sm font-medium transition-all border"
               style={{
-                borderColor: activeCategory === cat ? '#C9A14A' : 'var(--color-border)',
-                background: activeCategory === cat ? '#C9A14A' : 'transparent',
-                color: activeCategory === cat ? '#0E0E0E' : 'var(--color-text-secondary)',
+                borderColor: activeCategory === slug ? '#C9A14A' : 'var(--color-border)',
+                background: activeCategory === slug ? '#C9A14A' : 'transparent',
+                color: activeCategory === slug ? '#0E0E0E' : 'var(--color-text-secondary)',
               }}
             >
-              {t(`portfolio.${cat}`)}
+              {getCategoryLabel(category, lang, t)}
             </button>
           ))}
         </div>

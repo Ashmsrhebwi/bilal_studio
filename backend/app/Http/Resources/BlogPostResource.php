@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Support\MediaUrl;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Storage;
 
 class BlogPostResource extends JsonResource
 {
@@ -25,7 +25,7 @@ class BlogPostResource extends JsonResource
             'excerpt_en'           => $this->excerpt_en,
             'content_ar'           => $this->content_ar,
             'content_en'           => $this->content_en,
-            'image'                => $this->cover_image ? Storage::disk('public')->url($this->cover_image) : null,
+            'image'                => MediaUrl::resolve($this->cover_image),
             'author_ar'            => $this->author_ar,
             'author_en'            => $this->author_en,
             'read_time'            => $this->read_time,

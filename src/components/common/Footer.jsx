@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useQuery } from '@tanstack/react-query';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 const InstagramIcon = () => (
@@ -18,7 +19,7 @@ const LinkedInIcon = () => (
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
   </svg>
 );
-import { newsletterService } from '../../services';
+import { newsletterService, settingsService } from '../../services';
 
 const footerLinks = {
   pages: ['home', 'portfolio', 'services', 'about', 'process', 'blog', 'contact'],
@@ -35,13 +36,30 @@ export default function Footer() {
   const lang = i18n.language;
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [newsletterError, setNewsletterError] = useState(false);
+
+  const { data: settings } = useQuery({
+    queryKey: ['settings'],
+    queryFn: settingsService.get,
+  });
+  const contact = settings?.contact || settings || {};
+  const social = settings?.social || settings || {};
+  const phone = contact.phone || '+963 21 234 5678';
+  const phoneHref = contact.phone ? `tel:${contact.phone}` : 'tel:+963212345678';
+  const contactEmail = contact.email || 'info@sardinistudio.com';
+  const address = lang === 'ar' ? contact.address_ar : contact.address_en;
 
   const handleNewsletter = async (e) => {
     e.preventDefault();
     if (!email) return;
-    await newsletterService.subscribe(email);
-    setSubscribed(true);
-    setEmail('');
+    setNewsletterError(false);
+    try {
+      await newsletterService.subscribe(email);
+      setSubscribed(true);
+      setEmail('');
+    } catch {
+      setNewsletterError(true);
+    }
   };
 
   return (
@@ -63,13 +81,15 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3">
               {[
-                { icon: InstagramIcon, href: '#', label: 'Instagram' },
-                { icon: FacebookIcon, href: '#', label: 'Facebook' },
-                { icon: LinkedInIcon, href: '#', label: 'LinkedIn' },
-              ].map(({ icon: Icon, href, label }) => (
+                { icon: InstagramIcon, href: social.instagram, label: 'Instagram' },
+                { icon: FacebookIcon, href: social.facebook, label: 'Facebook' },
+                { icon: LinkedInIcon, href: social.linkedin, label: 'LinkedIn' },
+              ].filter(({ href }) => href).map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="w-9 h-9 border flex items-center justify-center transition-colors"
                   style={{ borderColor: '#2a2620', color: '#a0958a' }}
@@ -112,15 +132,15 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
                 <MapPin size={16} style={{ color: '#C9A14A', marginTop: 2, flexShrink: 0 }} />
-                <span className="text-sm" style={{ color: '#a0958a' }}>{t('contact.address_value')}</span>
+                <span className="text-sm" style={{ color: '#a0958a' }}>{address || t('contact.address_value')}</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone size={16} style={{ color: '#C9A14A', flexShrink: 0 }} />
-                <a href="tel:+963212345678" className="text-sm" style={{ color: '#a0958a' }}>+963 21 234 5678</a>
+                <a href={phoneHref} className="text-sm" style={{ color: '#a0958a' }}>{phone}</a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={16} style={{ color: '#C9A14A', flexShrink: 0 }} />
-                <a href="mailto:info@sardinistudio.com" className="text-sm" style={{ color: '#a0958a' }}>info@sardinistudio.com</a>
+                <a href={`mailto:${contactEmail}`} className="text-sm" style={{ color: '#a0958a' }}>{contactEmail}</a>
               </li>
             </ul>
           </div>
@@ -132,23 +152,28 @@ export default function Footer() {
             </h3>
             <p className="text-sm mb-4" style={{ color: '#a0958a' }}>{t('footer.newsletter_text')}</p>
             {subscribed ? (
-              <p className="text-sm" style={{ color: '#C9A14A' }}>✓ شكراً للاشتراك!</p>
+              <p className="text-sm" style={{ color: '#C9A14A' }}>✓ {t('footer.subscribe_success')}</p>
             ) : (
-              <form onSubmit={handleNewsletter} className="flex gap-2">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  placeholder={t('footer.email_placeholder')}
-                  className="flex-1 px-3 py-2 text-sm bg-transparent border outline-none text-white placeholder-gray-600"
-                  style={{ borderColor: '#2a2620' }}
-                  onFocus={e => e.target.style.borderColor = '#C9A14A'}
-                  onBlur={e => e.target.style.borderColor = '#2a2620'}
-                />
-                <button type="submit" className="px-3 py-2" style={{ background: '#C9A14A', color: '#0E0E0E' }}>
-                  <Send size={16} />
-                </button>
-              </form>
+              <>
+                <form onSubmit={handleNewsletter} className="flex gap-2">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    placeholder={t('footer.email_placeholder')}
+                    className="flex-1 px-3 py-2 text-sm bg-transparent border outline-none text-white placeholder-gray-600"
+                    style={{ borderColor: '#2a2620' }}
+                    onFocus={e => e.target.style.borderColor = '#C9A14A'}
+                    onBlur={e => e.target.style.borderColor = '#2a2620'}
+                  />
+                  <button type="submit" className="px-3 py-2" style={{ background: '#C9A14A', color: '#0E0E0E' }}>
+                    <Send size={16} />
+                  </button>
+                </form>
+                {newsletterError && (
+                  <p className="text-xs mt-2" style={{ color: '#ef4444' }}>{t('footer.newsletter_error')}</p>
+                )}
+              </>
             )}
           </div>
         </div>

@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Support\MediaUrl;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Storage;
 
 class ServiceResource extends JsonResource
 {
@@ -20,7 +20,7 @@ class ServiceResource extends JsonResource
             'details_ar'     => $this->details_ar,
             'details_en'     => $this->details_en,
             'icon'           => $this->icon,
-            'image'          => $this->image ? Storage::disk('public')->url($this->image) : null,
+            'image'          => MediaUrl::resolve($this->image),
             'sort_order'     => $this->sort_order,
             'is_active'      => $this->is_active,
         ];

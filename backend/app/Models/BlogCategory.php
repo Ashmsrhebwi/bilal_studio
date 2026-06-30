@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class BlogCategory extends Model
 {
-    protected $fillable = ['name_ar', 'name_en', 'slug'];
+    protected $fillable = ['name_ar', 'name_en', 'slug', 'sort_order', 'is_active'];
+
+    protected $casts = ['is_active' => 'boolean'];
 
     public function posts(): HasMany
     {

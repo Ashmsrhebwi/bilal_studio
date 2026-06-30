@@ -32,7 +32,7 @@ export default function Blog() {
               </div>
               <div className="p-8 lg:p-12 flex flex-col justify-center" style={{ border: '1px solid var(--color-border)', background: 'var(--color-card)' }}>
                 <span className="text-xs uppercase tracking-wider mb-3 font-medium" style={{ color: '#C9A14A' }}>
-                  {lang === 'ar' ? posts[0].category_ar : posts[0].category_en}
+                  {lang === 'ar' ? (posts[0].category?.name_ar ?? posts[0].category_ar) : (posts[0].category?.name_en ?? posts[0].category_en)}
                 </span>
                 <h2 className="text-2xl lg:text-3xl font-bold mb-4 group-hover:text-yellow-500 transition-colors" style={{ color: 'var(--color-text)' }}>
                   {lang === 'ar' ? posts[0].title_ar : posts[0].title_en}
@@ -65,7 +65,7 @@ export default function Blog() {
                 </div>
                 <div className="p-5" style={{ border: '1px solid var(--color-border)', borderTop: 'none', background: 'var(--color-card)' }}>
                   <span className="text-xs uppercase tracking-wider mb-2 block" style={{ color: '#C9A14A' }}>
-                    {lang === 'ar' ? post.category_ar : post.category_en}
+                    {lang === 'ar' ? (post.category?.name_ar ?? post.category_ar) : (post.category?.name_en ?? post.category_en)}
                   </span>
                   <h3 className="font-bold text-base mb-2 group-hover:text-yellow-500 transition-colors" style={{ color: 'var(--color-text)' }}>
                     {lang === 'ar' ? post.title_ar : post.title_en}

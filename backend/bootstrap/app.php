@@ -1,12 +1,11 @@
 <?php
 
 use App\Http\Middleware\EnsureAdminMiddleware;
+use App\Http\Middleware\SecurityHeaders;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
-use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Support\Facades\RateLimiter;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -22,24 +21,16 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => EnsureAdminMiddleware::class,
         ]);
 
-        // Rate limiters
-        RateLimiter::for('login', function (Request $request) {
-            return Limit::perMinute(5)->by($request->ip())->response(function () {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'محاولات تسجيل دخول كثيرة. حاول بعد دقيقة.',
-                ], 429);
-            });
-        });
+        $middleware->append(SecurityHeaders::class);
 
-        RateLimiter::for('contact', function (Request $request) {
-            return Limit::perMinutes(10, 3)->by($request->ip())->response(function () {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'أرسلت طلبات كثيرة. حاول بعد قليل.',
-                ], 429);
-            });
-        });
+        // This is an API-only app with no 'login' named route. Without this,
+        // Authenticate::redirectTo() throws RouteNotFoundException for any
+        // unauthenticated request that lacks an explicit Accept: application/json
+        // header (i.e. doesn't pass expectsJson()), turning a 401 into a 500.
+        $middleware->redirectGuestsTo(fn () => null);
+
+        // Rate limiters are registered in AppServiceProvider::boot(), not here —
+        // see comment there for why.
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         // Always return JSON for API routes
@@ -66,6 +57,35 @@ return Application::configure(basePath: dirname(__DIR__))
                     'message' => 'بيانات غير صحيحة.',
                     'errors'  => $e->errors(),
                 ], 422);
+            }
+        });
+
+        $exceptions->render(function (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e, Request $request) {
+            if ($request->is('api/*')) {
+                return response()->json(['success' => false, 'message' => 'المسار غير موجود.'], 404);
+            }
+        });
+
+        $exceptions->render(function (\Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException $e, Request $request) {
+            if ($request->is('api/*')) {
+                return response()->json(['success' => false, 'message' => 'الطريقة غير مسموحة.'], 405);
+            }
+        });
+
+        $exceptions->render(function (\Illuminate\Auth\Access\AuthorizationException $e, Request $request) {
+            if ($request->is('api/*')) {
+                return response()->json(['success' => false, 'message' => 'غير مصرح.'], 403);
+            }
+        });
+
+        // Catch-all: never leak stack traces / internal error details for API routes,
+        // even when APP_DEBUG=true, for any exception type not explicitly handled above.
+        $exceptions->render(function (\Throwable $e, Request $request) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'حدث خطأ في الخادم. حاول مرة أخرى لاحقاً.',
+                ], 500);
             }
         });
     })->create();

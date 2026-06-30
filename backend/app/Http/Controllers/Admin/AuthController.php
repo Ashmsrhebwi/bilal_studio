@@ -46,20 +46,13 @@ class AuthController extends Controller
             return response()->json(['success' => false, 'message' => 'بيانات الاعتماد غير صحيحة.'], 401);
         }
 
-        // Verify password: check DB user first, then .env hash, then site_settings hash
-        $user = User::where('email', $adminEmail)->first();
-        $passwordValid = false;
+        // The admin password is sourced from site_settings (set on password reset)
+        // or, before any reset has happened, from ADMIN_PASSWORD_HASH. The `users`
+        // table row is only used to hold the Sanctum token, never the credential.
+        $storedHash = \App\Models\SiteSetting::getValue('admin_password_hash')
+            ?? config('auth.admin_password_hash');
 
-        if ($user) {
-            $passwordValid = Hash::check($request->password, $user->password);
-        } else {
-            // Fall back to site_settings or env hash
-            $storedHash = \App\Models\SiteSetting::getValue('admin_password_hash')
-                ?? config('auth.admin_password_hash');
-            if ($storedHash) {
-                $passwordValid = Hash::check($request->password, $storedHash);
-            }
-        }
+        $passwordValid = $storedHash && Hash::check($request->password, $storedHash);
 
         if (!$passwordValid) {
             RateLimiter::hit($key, 60);

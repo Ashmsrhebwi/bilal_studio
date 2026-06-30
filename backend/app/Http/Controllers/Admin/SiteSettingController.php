@@ -49,7 +49,7 @@ class SiteSettingController extends Controller
 
     public function uploadLogo(Request $request): JsonResponse
     {
-        $request->validate(['logo' => 'required|image|max:2048']);
+        $request->validate(['logo' => 'required|image|mimes:jpeg,jpg,png,webp,gif|max:2048']);
         $media = $this->mediaService->upload($request->file('logo'), 'settings');
         SiteSetting::setValue('logo', $media->file_path);
 

@@ -7,6 +7,7 @@ import SectionTitle from '../ui/SectionTitle';
 import LazyImage from '../ui/LazyImage';
 import RevealOnScroll from '../motion/RevealOnScroll';
 import TiltCard from '../motion/TiltCard';
+import { getCategoryLabel } from '../../utils/category';
 
 export default function FeaturedProjects() {
   const { t, i18n } = useTranslation();
@@ -54,7 +55,7 @@ export default function FeaturedProjects() {
                 </TiltCard>
                 <div className="p-4" style={{ borderBottom: '1px solid var(--color-border)', borderLeft: '1px solid var(--color-border)', borderRight: '1px solid var(--color-border)' }}>
                   <span className="text-xs uppercase tracking-wider mb-1 block" style={{ color: '#C9A14A' }}>
-                    {t(`portfolio.${project.category}`)}
+                    {getCategoryLabel(project.category, lang, t)}
                   </span>
                   <h3 className="font-semibold text-lg" style={{ color: 'var(--color-text)' }}>
                     {lang === 'ar' ? project.title_ar : project.title_en}

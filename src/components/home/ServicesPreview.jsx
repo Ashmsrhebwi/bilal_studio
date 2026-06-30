@@ -1,14 +1,26 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Building2, Sofa, Layers, HardHat, Box, MessageSquare } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import * as Icons from 'lucide-react';
+import { Box } from 'lucide-react';
 import SectionTitle from '../ui/SectionTitle';
 import RevealOnScroll from '../motion/RevealOnScroll';
+import { servicesService } from '../../services';
 
-const serviceIcons = [Building2, Sofa, Layers, HardHat, Box, MessageSquare];
-const serviceKeys = ['architectural', 'interior', 'exterior', 'supervision', 'rendering', 'consulting'];
+function kebabToPascal(str) {
+  return str.replace(/(^\w|-\w)/g, (s) => s.replace('-', '').toUpperCase());
+}
 
 export default function ServicesPreview() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
+
+  const { data: services = [] } = useQuery({
+    queryKey: ['services'],
+    queryFn: servicesService.getAll,
+  });
+
+  if (services.length === 0) return null;
 
   return (
     <section className="py-20" style={{ background: 'var(--color-bg-secondary)' }}>
@@ -16,11 +28,11 @@ export default function ServicesPreview() {
         <SectionTitle title={t('services_preview.title')} subtitle={t('services_preview.subtitle')} center />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {serviceKeys.map((key, i) => {
-            const Icon = serviceIcons[i];
+          {services.slice(0, 6).map((service, i) => {
+            const Icon = Icons[kebabToPascal(service.icon || '')] || Box;
             return (
               <RevealOnScroll
-                key={key}
+                key={service.id}
                 delay={i * 0.08}
                 duration={0.6}
                 className="card p-6 group cursor-pointer"
@@ -32,10 +44,10 @@ export default function ServicesPreview() {
                   <Icon size={22} />
                 </div>
                 <h3 className="font-semibold text-lg mb-2" style={{ color: 'var(--color-text)' }}>
-                  {t(`services.${key}.name`)}
+                  {lang === 'ar' ? service.name_ar : service.name_en}
                 </h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                  {t(`services.${key}.desc`)}
+                  {lang === 'ar' ? service.description_ar : service.description_en}
                 </p>
               </RevealOnScroll>
             );

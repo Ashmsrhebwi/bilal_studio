@@ -23,12 +23,18 @@ export default function BookConsultation() {
   useSEO({ titleKey: 'seo.book_title', descKey: 'seo.book_desc' });
   const { t } = useTranslation();
   const [done, setDone] = useState(false);
+  const [serverError, setServerError] = useState('');
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({ resolver: zodResolver(schema) });
 
   const onSubmit = async (data) => {
-    await bookingService.create(data);
-    setDone(true);
+    setServerError('');
+    try {
+      await bookingService.create(data);
+      setDone(true);
+    } catch {
+      setServerError(t('book.error'));
+    }
   };
 
   const inputCls = "w-full px-4 py-3 bg-transparent border outline-none transition-colors text-sm";
@@ -97,6 +103,7 @@ export default function BookConsultation() {
                 <label className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('book.notes')}</label>
                 <textarea {...register('notes')} rows={4} className={inputCls} style={inputSt(false)} onFocus={focusGold} onBlur={e => e.target.style.borderColor = 'var(--color-border)'} />
               </div>
+              {serverError && <p className="text-red-500 text-sm">{serverError}</p>}
               <button type="submit" disabled={isSubmitting} className="btn-primary w-full justify-center py-4 text-base flex items-center gap-2">
                 <Calendar size={18} />
                 {isSubmitting ? '...' : t('book.submit')}

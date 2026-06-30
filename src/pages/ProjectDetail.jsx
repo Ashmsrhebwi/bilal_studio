@@ -10,6 +10,7 @@ import { projectsService } from '../services/projectsService';
 import Lightbox from '../components/portfolio/Lightbox';
 import ProjectCard from '../components/portfolio/ProjectCard';
 import LazyImage from '../components/ui/LazyImage';
+import { getCategorySlug, getCategoryLabel } from '../utils/category';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
@@ -47,7 +48,9 @@ export default function ProjectDetail() {
 
   if (!project) return <Navigate to="/portfolio" replace />;
 
-  const related = allProjects.filter((p) => p.category === project.category && p.id !== project.id).slice(0, 3);
+  const related = allProjects
+    .filter((p) => getCategorySlug(p.category) === getCategorySlug(project.category) && p.id !== project.id)
+    .slice(0, 3);
   const openLightbox = (i) => { setLightboxIndex(i); setLightboxOpen(true); };
   const projectSchema = buildProjectSchema({
     name: lang === 'ar' ? project.title_ar : project.title_en,
@@ -78,7 +81,7 @@ export default function ProjectDetail() {
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)' }}>
             <div className="absolute bottom-8 start-8">
               <span className="text-xs px-2 py-1 font-medium uppercase tracking-wider mb-3 inline-block" style={{ background: '#C9A14A', color: '#0E0E0E' }}>
-                {t(`portfolio.${project.category}`)}
+                {getCategoryLabel(project.category, lang, t)}
               </span>
               <h1 className="text-3xl md:text-5xl font-bold text-white">
                 {lang === 'ar' ? project.title_ar : project.title_en}

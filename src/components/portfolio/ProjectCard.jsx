@@ -5,6 +5,7 @@ import { MapPin, Calendar, Maximize2 } from 'lucide-react';
 import LazyImage from '../ui/LazyImage';
 import TiltCard from '../motion/TiltCard';
 import RevealOnScroll from '../motion/RevealOnScroll';
+import { getCategoryLabel } from '../../utils/category';
 
 export default function ProjectCard({ project, index = 0 }) {
   const { t, i18n } = useTranslation();
@@ -34,7 +35,7 @@ export default function ProjectCard({ project, index = 0 }) {
           </motion.div>
           <div className="absolute top-3 start-3">
             <span className="text-xs px-2 py-1 font-medium uppercase tracking-wider" style={{ background: '#C9A14A', color: '#0E0E0E' }}>
-              {t(`portfolio.${project.category}`)}
+              {getCategoryLabel(project.category, lang, t)}
             </span>
           </div>
         </TiltCard>

@@ -20,7 +20,7 @@ class TestimonialAdminController extends GenericCrudController
         'text_ar'    => 'required|string',
         'text_en'    => 'required|string',
         'rating'     => 'integer|min:1|max:5',
-        'avatar'     => 'nullable|image|max:2048',
+        'avatar'     => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:2048',
         'is_active'  => 'boolean',
         'sort_order' => 'integer',
     ];

@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, useInView } from 'framer-motion';
-import { mockSettings } from '../../api/mock/data';
+import { useQuery } from '@tanstack/react-query';
+import { settingsService } from '../../services';
 
 function CountUp({ target, suffix = '' }) {
   const [count, setCount] = useState(0);
@@ -26,14 +27,29 @@ function CountUp({ target, suffix = '' }) {
 
 export default function Stats() {
   const { t } = useTranslation();
-  const { stats } = mockSettings;
 
-  const items = [
-    { value: stats.projects, suffix: '+', label: t('stats.projects') },
-    { value: stats.years, suffix: '+', label: t('stats.years') },
-    { value: stats.clients, suffix: '+', label: t('stats.clients') },
-    { value: stats.awards, suffix: '', label: t('stats.awards') },
-  ];
+  const { data: settings } = useQuery({
+    queryKey: ['settings'],
+    queryFn: settingsService.get,
+  });
+
+  const stats = settings?.stats || {};
+  const isRealShape = stats.projects_count !== undefined;
+  const items = isRealShape
+    ? [
+        { value: Number(stats.projects_count || 0), suffix: '+', label: t('stats.projects') },
+        { value: Number(stats.years_experience || 0), suffix: '+', label: t('stats.years') },
+        { value: Number(stats.clients_count || 0), suffix: '+', label: t('stats.clients') },
+        { value: Number(stats.countries_count || 0), suffix: '+', label: t('stats.countries') },
+      ]
+    : [
+        { value: stats.projects || 0, suffix: '+', label: t('stats.projects') },
+        { value: stats.years || 0, suffix: '+', label: t('stats.years') },
+        { value: stats.clients || 0, suffix: '+', label: t('stats.clients') },
+        { value: stats.awards || 0, suffix: '', label: t('stats.awards') },
+      ];
+
+  if (!settings) return null;
 
   return (
     <section className="py-16" style={{ background: '#0a0a0a' }}>

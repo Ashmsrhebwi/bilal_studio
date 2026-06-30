@@ -21,7 +21,7 @@ class BlogPostRequest extends FormRequest
             'excerpt_en'            => ['nullable', 'string'],
             'content_ar'            => ['nullable', 'string'],
             'content_en'            => ['nullable', 'string'],
-            'cover_image'           => ['nullable', 'image', 'max:5120'],
+            'cover_image'           => ['nullable', 'image', 'mimes:jpeg,jpg,png,webp,gif', 'max:5120'],
             'author_ar'             => ['nullable', 'string', 'max:100'],
             'author_en'             => ['nullable', 'string', 'max:100'],
             'read_time'             => ['integer', 'min:1', 'max:120'],

@@ -25,7 +25,8 @@
     "projects": "Projects Completed",
     "years": "Years of Experience",
     "clients": "Satisfied Clients",
-    "awards": "Excellence Awards"
+    "awards": "Excellence Awards",
+    "countries": "Countries Served"
   },
   "featured": {
     "title": "Featured Projects",
@@ -226,6 +227,8 @@
     "title": "Approximate Cost Calculator",
     "subtitle": "Get a preliminary estimate for your project in seconds — no obligation",
     "area": "Area (m²)",
+    "area_placeholder": "e.g. 300",
+    "min_area": "Area must be at least 50m²",
     "type": "Project Type",
     "quality": "Finish Level",
     "standard": "Economy",
@@ -254,7 +257,8 @@
     "success": "Your appointment is registered! We'll reach out within hours to confirm.",
     "morning": "Morning (9 AM – 12 PM)",
     "afternoon": "Afternoon (12 PM – 3 PM)",
-    "evening": "Evening (3 PM – 6 PM)"
+    "evening": "Evening (3 PM – 6 PM)",
+    "error": "Something went wrong. Please try again or reach out via WhatsApp."
   },
   "footer": {
     "description": "Sardini Studio — an architectural design practice in Aleppo, Syria. Designing spaces that unite beauty, function, and identity since 2009.",
@@ -269,7 +273,8 @@
     "rights": "All rights reserved",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "made_with": "Crafted with passion in Aleppo"
+    "made_with": "Crafted with passion in Aleppo",
+    "newsletter_error": "Subscription failed. Please try again later."
   },
   "common": {
     "loading": "Loading...",

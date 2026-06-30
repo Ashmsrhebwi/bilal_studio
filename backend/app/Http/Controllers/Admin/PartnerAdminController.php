@@ -12,7 +12,7 @@ class PartnerAdminController extends GenericCrudController
 
     protected array $rules = [
         'name'        => 'required|string|max:100',
-        'logo'        => 'nullable|image|max:2048',
+        'logo'        => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:2048',
         'website_url' => 'nullable|url',
         'sort_order'  => 'integer',
         'is_active'   => 'boolean',

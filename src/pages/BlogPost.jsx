@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { Calendar, Clock, ArrowLeft, ArrowRight, Share2 } from 'lucide-react';
+import DOMPurify from 'dompurify';
 import { useSEO } from '../hooks/useSEO';
 import SchemaOrg, { buildArticleSchema } from '../components/SEO/SchemaOrg';
 import { blogService } from '../services';
@@ -31,7 +32,10 @@ export default function BlogPost() {
   if (isLoading) return <div className="pt-24 flex items-center justify-center min-h-screen"><div className="w-10 h-10 border-2 rounded-full animate-spin" style={{ borderColor: 'transparent', borderTopColor: '#C9A14A' }} /></div>;
   if (!post) return <Navigate to="/blog" replace />;
 
-  const content = lang === 'ar' ? post.content_ar : post.content_en;
+  const content = DOMPurify.sanitize((lang === 'ar' ? post.content_ar : post.content_en) || '', {
+    ALLOWED_TAGS: ['p', 'br', 'strong', 'b', 'em', 'i', 'u', 'a', 'ul', 'ol', 'li', 'h2', 'h3', 'h4', 'blockquote', 'img', 'figure', 'figcaption', 'code', 'pre', 'span'],
+    ALLOWED_ATTR: ['href', 'src', 'alt', 'title', 'target', 'rel', 'class'],
+  });
   const articleSchema = buildArticleSchema({
     title: lang === 'ar' ? post.title_ar : post.title_en,
     description: lang === 'ar' ? post.excerpt_ar : post.excerpt_en,
@@ -52,7 +56,7 @@ export default function BlogPost() {
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>
           <span className="text-xs uppercase tracking-wider font-medium" style={{ color: '#C9A14A' }}>
-            {lang === 'ar' ? post.category_ar : post.category_en}
+            {lang === 'ar' ? (post.category?.name_ar ?? post.category_ar) : (post.category?.name_en ?? post.category_en)}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold mt-2 mb-6" style={{ color: 'var(--color-text)' }}>
             {lang === 'ar' ? post.title_ar : post.title_en}

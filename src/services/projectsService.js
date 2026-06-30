@@ -6,21 +6,21 @@ export const projectsService = {
   getAll: async (params) => {
     if (USE_MOCK) return mockProjects;
     const res = await axiosInstance.get('/projects', { params });
-    return res.data;
+    return res.data.data;
   },
   getBySlug: async (slug) => {
     if (USE_MOCK) return mockProjects.find((p) => p.slug === slug) || null;
     const res = await axiosInstance.get(`/projects/${slug}`);
-    return res.data;
+    return res.data.data;
   },
   getFeatured: async () => {
     if (USE_MOCK) return mockProjects.filter((p) => p.featured);
-    const res = await axiosInstance.get('/projects?featured=1');
-    return res.data;
+    const res = await axiosInstance.get('/projects', { params: { featured: 1 } });
+    return res.data.data;
   },
   getByCategory: async (category) => {
     if (USE_MOCK) return category === 'all' ? mockProjects : mockProjects.filter((p) => p.category === category);
     const res = await axiosInstance.get('/projects', { params: { category } });
-    return res.data;
+    return res.data.data;
   },
 };

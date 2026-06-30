@@ -28,7 +28,7 @@ class MediaLibraryController extends Controller
     public function upload(Request $request): JsonResponse
     {
         $request->validate([
-            'file'        => 'required|file|max:20480|mimes:jpg,jpeg,png,webp,gif,svg,mp4,mov,avi,pdf',
+            'file'        => 'required|file|max:20480|mimes:jpg,jpeg,png,webp,gif,mp4,mov,avi,pdf',
             'alt_text_ar' => 'nullable|string|max:255',
             'alt_text_en' => 'nullable|string|max:255',
             'folder'      => 'nullable|string|max:100',

@@ -14,7 +14,11 @@ class MediaService
 
     public function upload(UploadedFile $file, string $folder = 'media', ?string $altAr = null, ?string $altEn = null): MediaLibrary
     {
-        $fileName  = Str::uuid() . '.' . $file->getClientOriginalExtension();
+        // Derive the extension from the actual detected MIME type, not the
+        // client-supplied filename, to prevent extension-confusion attacks
+        // (e.g. a file named "shell.jpg.php" being stored with a .php extension).
+        $extension = $file->extension() ?: Str::lower($file->getClientOriginalExtension());
+        $fileName  = Str::uuid() . '.' . $extension;
         $filePath  = "{$folder}/{$fileName}";
         $mimeType  = $file->getMimeType();
         $fileType  = $this->resolveFileType($mimeType);

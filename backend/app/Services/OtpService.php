@@ -34,9 +34,14 @@ class OtpService
             'attempts'   => 0,
         ]);
 
-        // Send notification
-        Notification::route('mail', $email)
-            ->notify(new OtpNotification($code, $this->expiryMinutes));
+        // Send notification (best-effort: the OTP record is already persisted,
+        // so a mail outage shouldn't fail the login request with a 500)
+        try {
+            Notification::route('mail', $email)
+                ->notify(new OtpNotification($code, $this->expiryMinutes));
+        } catch (\Throwable $e) {
+            report($e);
+        }
 
         return $otp;
     }

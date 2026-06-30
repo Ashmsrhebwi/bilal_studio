@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Support\MediaUrl;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Storage;
 
 class TestimonialResource extends JsonResource
 {
@@ -21,7 +21,7 @@ class TestimonialResource extends JsonResource
             'text_ar'    => $this->text_ar,
             'text_en'    => $this->text_en,
             'rating'     => $this->rating,
-            'avatar'     => $this->avatar ? Storage::disk('public')->url($this->avatar) : null,
+            'avatar'     => MediaUrl::resolve($this->avatar),
             'is_active'  => $this->is_active,
             'sort_order' => $this->sort_order,
         ];

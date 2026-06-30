@@ -8,6 +8,7 @@ use App\Http\Resources\BlogPostResource;
 use App\Models\BlogPost;
 use App\Models\BlogCategory;
 use App\Services\MediaService;
+use App\Support\HtmlSanitizer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -39,6 +40,8 @@ class BlogPostController extends Controller
     {
         $data = $request->validated();
         $data['slug'] = $data['slug'] ?? Str::slug($data['title_en'] ?: $data['title_ar']);
+        $data['content_ar'] = HtmlSanitizer::clean($data['content_ar'] ?? null);
+        $data['content_en'] = HtmlSanitizer::clean($data['content_en'] ?? null);
 
         if ($request->hasFile('cover_image')) {
             $media = $this->mediaService->upload($request->file('cover_image'), 'blog');
@@ -58,6 +61,12 @@ class BlogPostController extends Controller
     public function update(BlogPostRequest $request, BlogPost $blogPost): JsonResponse
     {
         $data = $request->validated();
+        if (array_key_exists('content_ar', $data)) {
+            $data['content_ar'] = HtmlSanitizer::clean($data['content_ar']);
+        }
+        if (array_key_exists('content_en', $data)) {
+            $data['content_en'] = HtmlSanitizer::clean($data['content_en']);
+        }
 
         if ($request->hasFile('cover_image')) {
             if ($blogPost->cover_image) Storage::disk('public')->delete($blogPost->cover_image);

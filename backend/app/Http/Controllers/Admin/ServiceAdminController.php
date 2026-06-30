@@ -20,8 +20,16 @@ class ServiceAdminController extends GenericCrudController
         'details_ar'     => 'nullable|string',
         'details_en'     => 'nullable|string',
         'icon'           => 'nullable|string|max:100',
-        'image'          => 'nullable|image|max:5120',
+        'image'          => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:5120',
         'sort_order'     => 'integer',
         'is_active'      => 'boolean',
     ];
+
+    protected function rules(?int $id = null): array
+    {
+        $rules = $this->rules;
+        $rules['slug'] = 'nullable|string|unique:services,slug,' . ($id ?? 'NULL') . ',id';
+
+        return $rules;
+    }
 }
