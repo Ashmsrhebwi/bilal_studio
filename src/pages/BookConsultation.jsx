@@ -106,7 +106,7 @@ export default function BookConsultation() {
               {serverError && <p className="text-red-500 text-sm">{serverError}</p>}
               <button type="submit" disabled={isSubmitting} className="btn-primary w-full justify-center py-4 text-base flex items-center gap-2">
                 <Calendar size={18} />
-                {isSubmitting ? '...' : t('book.submit')}
+                {isSubmitting ? t('common.loading') : t('book.submit')}
               </button>
             </form>
           )}

@@ -10,6 +10,9 @@ import SectionTitle from '../ui/SectionTitle';
 export default function TestimonialsPreview() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
+  const isRTL = lang === 'ar';
+  const PrevIcon = isRTL ? ChevronRight : ChevronLeft;
+  const NextIcon = isRTL ? ChevronLeft : ChevronRight;
   const [current, setCurrent] = useState(0);
 
   const { data: testimonials = [] } = useQuery({
@@ -65,7 +68,7 @@ export default function TestimonialsPreview() {
 
           <div className="flex items-center justify-center gap-4 mt-6">
             <button onClick={prev} className="w-10 h-10 border flex items-center justify-center transition-colors" style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)' }}>
-              <ChevronLeft size={18} />
+              <PrevIcon size={18} />
             </button>
             <div className="flex gap-2">
               {testimonials.map((_, i) => (
@@ -78,7 +81,7 @@ export default function TestimonialsPreview() {
               ))}
             </div>
             <button onClick={next} className="w-10 h-10 border flex items-center justify-center transition-colors" style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)' }}>
-              <ChevronRight size={18} />
+              <NextIcon size={18} />
             </button>
           </div>
         </div>

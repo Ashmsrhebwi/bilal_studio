@@ -184,13 +184,13 @@ export default function Footer() {
             © {new Date().getFullYear()} Sardini Studio. {t('footer.rights')}.
           </p>
           <div className="flex items-center gap-4">
-            <Link to="/privacy" className="text-xs transition-colors" style={{ color: '#555' }}
+            <Link to="/contact" className="text-xs transition-colors" style={{ color: '#555' }}
               onMouseEnter={e => e.currentTarget.style.color = '#C9A14A'}
               onMouseLeave={e => e.currentTarget.style.color = '#555'}
             >
               {t('footer.privacy')}
             </Link>
-            <Link to="/terms" className="text-xs transition-colors" style={{ color: '#555' }}
+            <Link to="/contact" className="text-xs transition-colors" style={{ color: '#555' }}
               onMouseEnter={e => e.currentTarget.style.color = '#C9A14A'}
               onMouseLeave={e => e.currentTarget.style.color = '#555'}
             >

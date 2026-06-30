@@ -290,7 +290,8 @@
     "search": "بحث",
     "no_results": "لا توجد نتائج",
     "see_more": "شاهد المزيد",
-    "whatsapp": "واتساب"
+    "whatsapp": "واتساب",
+    "whatsapp_message": "مرحباً، أودّ الاستفسار عن خدماتكم"
   },
   "not_found": {
     "title": "404",

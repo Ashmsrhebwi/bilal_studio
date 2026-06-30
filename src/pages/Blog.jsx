@@ -13,7 +13,7 @@ export default function Blog() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
 
-  const { data: posts = [] } = useQuery({
+  const { data: posts = [], isLoading, isError, refetch } = useQuery({
     queryKey: ['blog'],
     queryFn: blogService.getAll,
   });
@@ -23,6 +23,23 @@ export default function Blog() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle title={t('blog.title')} subtitle={t('blog.subtitle')} />
 
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="aspect-[4/3] animate-pulse rounded" style={{ background: 'var(--color-card)' }} />
+            ))}
+          </div>
+        ) : isError ? (
+          <div className="text-center py-20">
+            <p className="mb-4" style={{ color: 'var(--color-text-secondary)' }}>{t('common.error')}</p>
+            <button onClick={() => refetch()} className="btn-outline inline-flex">{t('common.retry')}</button>
+          </div>
+        ) : posts.length === 0 ? (
+          <p className="text-center py-20" style={{ color: 'var(--color-text-secondary)' }}>
+            {t('common.no_results')}
+          </p>
+        ) : (
+        <>
         {/* Featured post */}
         {posts[0] && (
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className="mb-12">
@@ -82,6 +99,8 @@ export default function Blog() {
             </motion.article>
           ))}
         </div>
+        </>
+        )}
       </div>
     </main>
   );

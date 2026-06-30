@@ -4,7 +4,7 @@ import { WHATSAPP_NUMBER } from '../../api/config';
 
 export default function WhatsAppButton() {
   const { t } = useTranslation();
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('مرحباً، أودّ الاستفسار عن خدماتكم')}`;
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t('common.whatsapp_message'))}`;
 
   return (
     <motion.a

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -6,6 +7,10 @@ const EASE_LUXE = [0.22, 1, 0.36, 1];
 
 export default function Lightbox({ images, currentIndex, onClose, onPrev, onNext }) {
   const prefersReducedMotion = useReducedMotion();
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language === 'ar';
+  const PrevIcon = isRTL ? ChevronRight : ChevronLeft;
+  const NextIcon = isRTL ? ChevronLeft : ChevronRight;
 
   useEffect(() => {
     const handler = (e) => {
@@ -50,7 +55,7 @@ export default function Lightbox({ images, currentIndex, onClose, onPrev, onNext
           onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'rgba(201,161,74,0.4)')}
           aria-label="Previous"
         >
-          <ChevronLeft size={22} />
+          <PrevIcon size={22} />
         </button>
 
         <motion.img
@@ -74,7 +79,7 @@ export default function Lightbox({ images, currentIndex, onClose, onPrev, onNext
           onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'rgba(201,161,74,0.4)')}
           aria-label="Next"
         >
-          <ChevronRight size={22} />
+          <NextIcon size={22} />
         </button>
 
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3">

@@ -290,7 +290,8 @@
     "search": "Search",
     "no_results": "No results found",
     "see_more": "See More",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "whatsapp_message": "Hello, I'd like to inquire about your services"
   },
   "not_found": {
     "title": "404",

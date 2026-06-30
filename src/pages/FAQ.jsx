@@ -10,7 +10,7 @@ export default function FAQ() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
 
-  const { data: faqs = [] } = useQuery({
+  const { data: faqs = [], isLoading, isError, refetch } = useQuery({
     queryKey: ['faq'],
     queryFn: faqService.getAll,
   });
@@ -19,7 +19,22 @@ export default function FAQ() {
     <main className="pt-24 pb-20">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <SectionTitle title={t('faq.title')} subtitle={t('faq.subtitle')} center />
-        <Accordion items={faqs} lang={lang} />
+        {isLoading ? (
+          <p className="text-center py-20" style={{ color: 'var(--color-text-secondary)' }}>
+            {t('common.loading')}
+          </p>
+        ) : isError ? (
+          <div className="text-center py-20">
+            <p className="mb-4" style={{ color: 'var(--color-text-secondary)' }}>{t('common.error')}</p>
+            <button onClick={() => refetch()} className="btn-outline inline-flex">{t('common.retry')}</button>
+          </div>
+        ) : faqs.length === 0 ? (
+          <p className="text-center py-20" style={{ color: 'var(--color-text-secondary)' }}>
+            {t('common.no_results')}
+          </p>
+        ) : (
+          <Accordion items={faqs} lang={lang} />
+        )}
       </div>
     </main>
   );

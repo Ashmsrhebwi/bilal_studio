@@ -11,7 +11,7 @@ export default function Testimonials() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
 
-  const { data: testimonials = [] } = useQuery({
+  const { data: testimonials = [], isLoading, isError, refetch } = useQuery({
     queryKey: ['testimonials'],
     queryFn: testimonialsService.getAll,
   });
@@ -21,6 +21,22 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle title={t('testimonials.title')} subtitle={t('testimonials.subtitle')} center />
 
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="card p-8 h-48 animate-pulse" style={{ background: 'var(--color-card)' }} />
+            ))}
+          </div>
+        ) : isError ? (
+          <div className="text-center py-20">
+            <p className="mb-4" style={{ color: 'var(--color-text-secondary)' }}>{t('common.error')}</p>
+            <button onClick={() => refetch()} className="btn-outline inline-flex">{t('common.retry')}</button>
+          </div>
+        ) : testimonials.length === 0 ? (
+          <p className="text-center py-20" style={{ color: 'var(--color-text-secondary)' }}>
+            {t('common.no_results')}
+          </p>
+        ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
           {testimonials.map((item, i) => (
             <motion.div
@@ -53,6 +69,7 @@ export default function Testimonials() {
             </motion.div>
           ))}
         </div>
+        )}
       </div>
     </main>
   );
