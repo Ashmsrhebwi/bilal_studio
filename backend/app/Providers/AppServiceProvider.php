@@ -36,7 +36,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         RateLimiter::for('contact', function (Request $request) {
-            return Limit::perMinutes(10, 3)->by($request->ip())->response(function () {
+            // Keyed by IP + path so the contact, consultation, and newsletter
+            // forms each get their own budget instead of sharing one — a user
+            // submitting one form shouldn't get blocked from the others.
+            return Limit::perMinutes(10, 3)->by($request->ip() . '|' . $request->path())->response(function () {
                 return response()->json([
                     'success' => false,
                     'message' => 'أرسلت طلبات كثيرة. حاول بعد قليل.',

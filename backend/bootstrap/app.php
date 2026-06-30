@@ -78,6 +78,16 @@ return Application::configure(basePath: dirname(__DIR__))
             }
         });
 
+        // HttpResponseException wraps an already-built response (e.g. a rate
+        // limiter's ->response() closure) — it must be unwrapped and returned
+        // as-is, otherwise it falls through to the catch-all below and a
+        // valid 429 turns into a generic 500.
+        $exceptions->render(function (\Illuminate\Http\Exceptions\HttpResponseException $e, Request $request) {
+            if ($request->is('api/*')) {
+                return $e->getResponse();
+            }
+        });
+
         // Catch-all: never leak stack traces / internal error details for API routes,
         // even when APP_DEBUG=true, for any exception type not explicitly handled above.
         $exceptions->render(function (\Throwable $e, Request $request) {

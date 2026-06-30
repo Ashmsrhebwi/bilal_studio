@@ -75,6 +75,7 @@ Route::prefix('v1')->group(function () {
     Route::middleware('throttle:contact')->group(function () {
         Route::post('contact', [ContactPublicController::class, 'sendMessage']);
         Route::post('consultations', [ContactPublicController::class, 'bookConsultation']);
+        Route::post('newsletter', [ContactPublicController::class, 'subscribeNewsletter']);
     });
 
     /*
