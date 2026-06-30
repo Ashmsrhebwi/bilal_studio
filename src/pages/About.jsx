@@ -5,6 +5,9 @@ import { useSEO } from '../hooks/useSEO';
 import SchemaOrg from '../components/SEO/SchemaOrg';
 import SectionTitle from '../components/ui/SectionTitle';
 import LazyImage from '../components/ui/LazyImage';
+import GoldLineDivider from '../components/motion/GoldLineDivider';
+
+const EASE_LUXE = [0.22, 1, 0.36, 1];
 
 const PORTRAIT = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80';
 
@@ -41,7 +44,7 @@ export default function About() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8, ease: EASE_LUXE }}
           >
             <div className="relative">
               <div className="aspect-[3/4] overflow-hidden">
@@ -61,9 +64,9 @@ export default function About() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8, ease: EASE_LUXE }}
           >
-            <span className="gold-line mb-4" />
+            <GoldLineDivider width={64} className="mb-4" />
             <h2 className="text-3xl font-bold mb-1" style={{ color: 'var(--color-text)' }}>{t('about.bio_title')}</h2>
             <p className="mb-6 font-medium" style={{ color: '#C9A14A' }}>{t('about.bio_role')}</p>
             <p className="leading-relaxed mb-8" style={{ color: 'var(--color-text-secondary)' }}>{t('about.bio_text')}</p>
@@ -89,7 +92,7 @@ export default function About() {
           className="p-10 md:p-16 mb-20 text-center"
           style={{ background: 'linear-gradient(135deg, rgba(201,161,74,0.08), rgba(201,161,74,0.03))', border: '1px solid rgba(201,161,74,0.2)' }}
         >
-          <span className="gold-line mb-6" style={{ margin: '0 auto 1.5rem' }} />
+          <GoldLineDivider width={64} center className="mb-6" />
           <h2 className="text-2xl font-bold mb-6" style={{ color: 'var(--color-text)' }}>{t('about.philosophy_title')}</h2>
           <p className="text-lg leading-relaxed max-w-3xl mx-auto italic" style={{ color: 'var(--color-text-secondary)' }}>
             "{t('about.philosophy_text')}"
@@ -108,7 +111,7 @@ export default function About() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
+                  transition={{ delay: i * 0.08, duration: 0.6, ease: EASE_LUXE }}
                   className={`flex items-center gap-8 ${i % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
                 >
                   <div className={`flex-1 ${i % 2 === 0 ? 'text-end' : 'text-start'}`}>

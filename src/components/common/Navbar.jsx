@@ -37,7 +37,7 @@ export default function Navbar() {
       <motion.nav
         initial={{ y: -80 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="fixed top-0 inset-x-0 z-40 transition-all duration-300"
         style={{
           background: scrolled ? 'var(--color-nav)' : 'transparent',
@@ -51,7 +51,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 group">
               <div
-                className="w-8 h-8 flex items-center justify-center border transition-colors"
+                className="w-8 h-8 flex items-center justify-center border transition-all duration-300 group-hover:scale-110"
                 style={{ borderColor: '#C9A14A', color: '#C9A14A' }}
               >
                 <span style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 600 }}>S</span>

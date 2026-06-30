@@ -35,7 +35,7 @@ export default function TestimonialsPreview() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="card p-8 md:p-12 text-center"
             >
               <div className="flex justify-center gap-1 mb-6">

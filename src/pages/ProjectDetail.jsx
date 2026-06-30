@@ -91,7 +91,7 @@ export default function ProjectDetail() {
           {/* Main Content */}
           <div className="lg:col-span-2">
             {/* Description */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>
               <h2 className="text-xl font-semibold mb-4" style={{ color: 'var(--color-text)' }}>{t('project_detail.description')}</h2>
               <p className="leading-relaxed text-base" style={{ color: 'var(--color-text-secondary)' }}>
                 {lang === 'ar' ? project.description_ar : project.description_en}

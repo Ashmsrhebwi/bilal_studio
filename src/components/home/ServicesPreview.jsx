@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
 import { Building2, Sofa, Layers, HardHat, Box, MessageSquare } from 'lucide-react';
 import SectionTitle from '../ui/SectionTitle';
+import RevealOnScroll from '../motion/RevealOnScroll';
 
 const serviceIcons = [Building2, Sofa, Layers, HardHat, Box, MessageSquare];
 const serviceKeys = ['architectural', 'interior', 'exterior', 'supervision', 'rendering', 'consulting'];
@@ -19,12 +19,10 @@ export default function ServicesPreview() {
           {serviceKeys.map((key, i) => {
             const Icon = serviceIcons[i];
             return (
-              <motion.div
+              <RevealOnScroll
                 key={key}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.5 }}
+                delay={i * 0.08}
+                duration={0.6}
                 className="card p-6 group cursor-pointer"
               >
                 <div
@@ -39,7 +37,7 @@ export default function ServicesPreview() {
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                   {t(`services.${key}.desc`)}
                 </p>
-              </motion.div>
+              </RevealOnScroll>
             );
           })}
         </div>

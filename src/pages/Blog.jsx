@@ -25,7 +25,7 @@ export default function Blog() {
 
         {/* Featured post */}
         {posts[0] && (
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className="mb-12">
             <Link to={`/blog/${posts[0].slug}`} className="group grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden">
               <div className="aspect-[16/9] lg:aspect-auto overflow-hidden">
                 <LazyImage src={posts[0].image} alt={lang === 'ar' ? posts[0].title_ar : posts[0].title_en} className="w-full h-full transition-transform duration-700 group-hover:scale-105" />
@@ -57,7 +57,7 @@ export default function Blog() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
+              transition={{ delay: i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
               <Link to={`/blog/${post.slug}`} className="group block overflow-hidden">
                 <div className="aspect-[16/9] overflow-hidden">

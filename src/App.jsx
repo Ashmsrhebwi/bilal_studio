@@ -9,6 +9,7 @@ import Footer from './components/common/Footer';
 import WhatsAppButton from './components/common/WhatsAppButton';
 import ScrollToTop from './components/common/ScrollToTop';
 import Loader from './components/common/Loader';
+import CustomCursor from './components/motion/CustomCursor';
 import './i18n';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -36,10 +37,10 @@ function PageTransition({ children }) {
     <AnimatePresence mode="wait">
       <motion.div
         key={location.pathname}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -12 }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       >
         {children}
       </motion.div>
@@ -87,6 +88,7 @@ function AppShell() {
       <Footer />
       <WhatsAppButton />
       <ScrollToTop />
+      <CustomCursor />
     </>
   );
 }
@@ -95,7 +97,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1800);
+    const timer = setTimeout(() => setLoading(false), 2200);
     return () => clearTimeout(timer);
   }, []);
 

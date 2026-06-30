@@ -50,7 +50,7 @@ export default function BlogPost() {
         </Link>
 
         {/* Header */}
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>
           <span className="text-xs uppercase tracking-wider font-medium" style={{ color: '#C9A14A' }}>
             {lang === 'ar' ? post.category_ar : post.category_en}
           </span>

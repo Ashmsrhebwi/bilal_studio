@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
 import { Phone, Calendar } from 'lucide-react';
+import RevealOnScroll from '../motion/RevealOnScroll';
+import GoldLineDivider from '../motion/GoldLineDivider';
 
 export default function CTASection() {
   const { t } = useTranslation();
@@ -16,13 +17,8 @@ export default function CTASection() {
         style={{ backgroundImage: 'repeating-linear-gradient(45deg, #C9A14A 0, #C9A14A 1px, transparent 0, transparent 50%)', backgroundSize: '20px 20px' }}
       />
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <span className="gold-line mb-6" style={{ margin: '0 auto 1.5rem' }} />
+        <RevealOnScroll duration={0.9}>
+          <GoldLineDivider width={64} center className="mb-6" />
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
             {t('cta_section.title')}
           </h2>
@@ -39,7 +35,7 @@ export default function CTASection() {
               {t('cta_section.btn_book')}
             </Link>
           </div>
-        </motion.div>
+        </RevealOnScroll>
       </div>
     </section>
   );

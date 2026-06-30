@@ -18,7 +18,7 @@ export default function PartnersBar() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
+              transition={{ delay: i * 0.05, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="text-lg font-semibold tracking-wider transition-colors"
               style={{ color: 'var(--color-text-secondary)', fontFamily: 'Cormorant Garamond, serif' }}
             >

@@ -45,7 +45,7 @@ export default function Stats() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
+              transition={{ delay: i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="text-center"
             >
               <div className="text-4xl lg:text-5xl font-bold mb-2" style={{ color: '#C9A14A', fontFamily: 'Cormorant Garamond, serif' }}>

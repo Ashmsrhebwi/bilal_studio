@@ -10,11 +10,13 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          motion: ['framer-motion'],
-          query: ['@tanstack/react-query'],
-          i18n: ['i18next', 'react-i18next'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react-router-dom') || id.includes('node_modules/react') || id.includes('node_modules/scheduler')) return 'vendor';
+            if (id.includes('framer-motion')) return 'motion';
+            if (id.includes('@tanstack/react-query')) return 'query';
+            if (id.includes('i18next')) return 'i18n';
+          }
         },
       },
     },

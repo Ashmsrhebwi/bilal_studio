@@ -10,14 +10,14 @@ export function Accordion({ items, lang = 'ar' }) {
       {items.map((item) => (
         <div key={item.id} className="card overflow-hidden">
           <button
-            className="w-full flex items-center justify-between p-5 text-start"
+            className="w-full flex items-center justify-between p-5 text-start transition-colors duration-300"
             onClick={() => setOpenId(openId === item.id ? null : item.id)}
             aria-expanded={openId === item.id}
           >
-            <span className="font-semibold text-base" style={{ color: 'var(--color-text)' }}>
+            <span className="font-semibold text-base" style={{ color: openId === item.id ? 'var(--color-gold)' : 'var(--color-text)' }}>
               {lang === 'ar' ? item.question_ar : item.question_en}
             </span>
-            <motion.span animate={{ rotate: openId === item.id ? 180 : 0 }} transition={{ duration: 0.2 }}>
+            <motion.span animate={{ rotate: openId === item.id ? 180 : 0 }} transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}>
               <ChevronDown size={20} style={{ color: 'var(--color-gold)' }} />
             </motion.span>
           </button>
@@ -27,7 +27,7 @@ export function Accordion({ items, lang = 'ar' }) {
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               >
                 <p className="px-5 pb-5 section-subtitle leading-relaxed">
                   {lang === 'ar' ? item.answer_ar : item.answer_en}

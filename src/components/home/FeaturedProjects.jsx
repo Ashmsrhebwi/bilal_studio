@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { projectsService } from '../../services/projectsService';
 import SectionTitle from '../ui/SectionTitle';
 import LazyImage from '../ui/LazyImage';
+import RevealOnScroll from '../motion/RevealOnScroll';
+import TiltCard from '../motion/TiltCard';
 
 export default function FeaturedProjects() {
   const { t, i18n } = useTranslation();
@@ -34,32 +35,23 @@ export default function FeaturedProjects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, i) => (
-            <motion.article
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-            >
+            <RevealOnScroll key={project.id} delay={i * 0.08}>
               <Link to={`/portfolio/${project.slug}`} className="group block overflow-hidden">
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <TiltCard maxTilt={5} className="aspect-[4/3] overflow-hidden">
                   <LazyImage
                     src={project.cover}
                     alt={lang === 'ar' ? project.title_ar : project.title_en}
-                    className="w-full h-full transition-transform duration-700 group-hover:scale-110"
-                    style={{ height: '100%' }}
+                    className="absolute inset-0 w-full h-full transition-transform duration-700 ease-luxe group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
-                    <motion.span
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileHover={{ opacity: 1, scale: 1 }}
-                      className="opacity-0 group-hover:opacity-100 px-4 py-2 border text-sm font-medium transition-all"
-                      style={{ borderColor: '#C9A14A', color: '#C9A14A' }}
-                    >
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center"
+                    style={{ background: 'linear-gradient(to top, rgba(14,14,14,0.85), rgba(201,161,74,0.15) 60%, transparent 100%)' }}
+                  >
+                    <span className="px-4 py-2 border text-sm font-medium" style={{ borderColor: '#C9A14A', color: '#C9A14A' }}>
                       {t('featured.view_project')}
-                    </motion.span>
+                    </span>
                   </div>
-                </div>
+                </TiltCard>
                 <div className="p-4" style={{ borderBottom: '1px solid var(--color-border)', borderLeft: '1px solid var(--color-border)', borderRight: '1px solid var(--color-border)' }}>
                   <span className="text-xs uppercase tracking-wider mb-1 block" style={{ color: '#C9A14A' }}>
                     {t(`portfolio.${project.category}`)}
@@ -72,7 +64,7 @@ export default function FeaturedProjects() {
                   </p>
                 </div>
               </Link>
-            </motion.article>
+            </RevealOnScroll>
           ))}
         </div>
 
