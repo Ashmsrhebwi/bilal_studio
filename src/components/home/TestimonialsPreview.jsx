@@ -67,7 +67,7 @@ export default function TestimonialsPreview() {
           </AnimatePresence>
 
           <div className="flex items-center justify-center gap-4 mt-6">
-            <button onClick={prev} className="w-10 h-10 border flex items-center justify-center transition-colors" style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)' }}>
+            <button onClick={prev} aria-label={t('testimonials_preview.prev')} className="w-10 h-10 border flex items-center justify-center transition-colors" style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)' }}>
               <PrevIcon size={18} />
             </button>
             <div className="flex gap-2">
@@ -75,12 +75,14 @@ export default function TestimonialsPreview() {
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
+                  aria-label={t('testimonials_preview.go_to', { index: i + 1 })}
+                  aria-current={i === current}
                   className="w-2 h-2 rounded-full transition-all"
                   style={{ background: i === current ? '#C9A14A' : 'var(--color-border)' }}
                 />
               ))}
             </div>
-            <button onClick={next} className="w-10 h-10 border flex items-center justify-center transition-colors" style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)' }}>
+            <button onClick={next} aria-label={t('testimonials_preview.next')} className="w-10 h-10 border flex items-center justify-center transition-colors" style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)' }}>
               <NextIcon size={18} />
             </button>
           </div>

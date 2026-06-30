@@ -20,8 +20,10 @@ class TestimonialsPublicController extends Controller
             'success' => true,
             'data'    => TestimonialResource::collection($testimonials->items()),
             'meta'    => [
-                'total'    => $testimonials->total(),
-                'last_page' => $testimonials->lastPage(),
+                'total'        => $testimonials->total(),
+                'per_page'     => $testimonials->perPage(),
+                'current_page' => $testimonials->currentPage(),
+                'last_page'    => $testimonials->lastPage(),
             ],
         ]);
     }

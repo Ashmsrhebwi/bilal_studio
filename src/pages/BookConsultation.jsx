@@ -61,22 +61,22 @@ export default function BookConsultation() {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('book.name')}</label>
-                  <input {...register('name')} className={inputCls} style={inputSt(errors.name)} onFocus={focusGold} onBlur={blurReset(errors.name)} />
+                  <label htmlFor="book-name" className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('book.name')}</label>
+                  <input id="book-name" {...register('name')} className={inputCls} style={inputSt(errors.name)} onFocus={focusGold} onBlur={blurReset(errors.name)} />
                 </div>
                 <div>
-                  <label className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('book.email')}</label>
-                  <input {...register('email')} type="email" className={inputCls} style={inputSt(errors.email)} onFocus={focusGold} onBlur={blurReset(errors.email)} />
+                  <label htmlFor="book-email" className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('book.email')}</label>
+                  <input id="book-email" {...register('email')} type="email" className={inputCls} style={inputSt(errors.email)} onFocus={focusGold} onBlur={blurReset(errors.email)} />
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('book.phone')}</label>
-                  <input {...register('phone')} type="tel" className={inputCls} style={inputSt(errors.phone)} onFocus={focusGold} onBlur={blurReset(errors.phone)} />
+                  <label htmlFor="book-phone" className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('book.phone')}</label>
+                  <input id="book-phone" {...register('phone')} type="tel" className={inputCls} style={inputSt(errors.phone)} onFocus={focusGold} onBlur={blurReset(errors.phone)} />
                 </div>
                 <div>
-                  <label className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('book.project_type')}</label>
-                  <select {...register('project_type')} className={inputCls} style={inputSt(errors.project_type)}>
+                  <label htmlFor="book-project_type" className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('book.project_type')}</label>
+                  <select id="book-project_type" {...register('project_type')} className={inputCls} style={inputSt(errors.project_type)}>
                     <option value="">{t('contact.select_type')}</option>
                     {['residential','commercial','interior','exterior','hospitality','other'].map(tp => (
                       <option key={tp} value={tp}>{t(`contact.${tp}`)}</option>
@@ -86,12 +86,12 @@ export default function BookConsultation() {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('book.date')}</label>
-                  <input {...register('date')} type="date" className={inputCls} style={inputSt(errors.date)} onFocus={focusGold} onBlur={blurReset(errors.date)} />
+                  <label htmlFor="book-date" className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('book.date')}</label>
+                  <input id="book-date" {...register('date')} type="date" className={inputCls} style={inputSt(errors.date)} onFocus={focusGold} onBlur={blurReset(errors.date)} />
                 </div>
                 <div>
-                  <label className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('book.time')}</label>
-                  <select {...register('time')} className={inputCls} style={inputSt(errors.time)}>
+                  <label htmlFor="book-time" className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('book.time')}</label>
+                  <select id="book-time" {...register('time')} className={inputCls} style={inputSt(errors.time)}>
                     <option value="">—</option>
                     {['morning','afternoon','evening'].map(tm => (
                       <option key={tm} value={tm}>{t(`book.${tm}`)}</option>
@@ -100,8 +100,8 @@ export default function BookConsultation() {
                 </div>
               </div>
               <div>
-                <label className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('book.notes')}</label>
-                <textarea {...register('notes')} rows={4} className={inputCls} style={inputSt(false)} onFocus={focusGold} onBlur={e => e.target.style.borderColor = 'var(--color-border)'} />
+                <label htmlFor="book-notes" className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('book.notes')}</label>
+                <textarea id="book-notes" {...register('notes')} rows={4} className={inputCls} style={inputSt(false)} onFocus={focusGold} onBlur={e => e.target.style.borderColor = 'var(--color-border)'} />
               </div>
               {serverError && <p className="text-red-500 text-sm">{serverError}</p>}
               <button type="submit" disabled={isSubmitting} className="btn-primary w-full justify-center py-4 text-base flex items-center gap-2">

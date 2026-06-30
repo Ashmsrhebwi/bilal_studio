@@ -35,6 +35,9 @@ export default function Lightbox({ images, currentIndex, onClose, onPrev, onNext
         transition={{ duration: 0.5, ease: EASE_LUXE }}
         className="lightbox-overlay"
         onClick={onClose}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Image viewer"
       >
         <button
           onClick={onClose}

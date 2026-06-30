@@ -81,25 +81,25 @@ export default function Contact() {
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('contact.name')}</label>
-                    <input {...register('name')} className={inputClass} style={inputStyle(errors.name)} onFocus={e => e.target.style.borderColor = '#C9A14A'} onBlur={e => e.target.style.borderColor = errors.name ? '#ef4444' : 'var(--color-border)'} />
+                    <label htmlFor="contact-name" className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('contact.name')}</label>
+                    <input id="contact-name" {...register('name')} className={inputClass} style={inputStyle(errors.name)} onFocus={e => e.target.style.borderColor = '#C9A14A'} onBlur={e => e.target.style.borderColor = errors.name ? '#ef4444' : 'var(--color-border)'} />
                     {errors.name && <p className="text-xs text-red-500 mt-1">{t(`contact.${errors.name.message}`)}</p>}
                   </div>
                   <div>
-                    <label className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('contact.email')}</label>
-                    <input {...register('email')} type="email" className={inputClass} style={inputStyle(errors.email)} onFocus={e => e.target.style.borderColor = '#C9A14A'} onBlur={e => e.target.style.borderColor = errors.email ? '#ef4444' : 'var(--color-border)'} />
+                    <label htmlFor="contact-email" className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('contact.email')}</label>
+                    <input id="contact-email" {...register('email')} type="email" className={inputClass} style={inputStyle(errors.email)} onFocus={e => e.target.style.borderColor = '#C9A14A'} onBlur={e => e.target.style.borderColor = errors.email ? '#ef4444' : 'var(--color-border)'} />
                     {errors.email && <p className="text-xs text-red-500 mt-1">{t(`contact.${errors.email.message}`)}</p>}
                   </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('contact.phone')}</label>
-                    <input {...register('phone')} type="tel" className={inputClass} style={inputStyle(errors.phone)} onFocus={e => e.target.style.borderColor = '#C9A14A'} onBlur={e => e.target.style.borderColor = errors.phone ? '#ef4444' : 'var(--color-border)'} />
+                    <label htmlFor="contact-phone" className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('contact.phone')}</label>
+                    <input id="contact-phone" {...register('phone')} type="tel" className={inputClass} style={inputStyle(errors.phone)} onFocus={e => e.target.style.borderColor = '#C9A14A'} onBlur={e => e.target.style.borderColor = errors.phone ? '#ef4444' : 'var(--color-border)'} />
                     {errors.phone && <p className="text-xs text-red-500 mt-1">{t(`contact.${errors.phone.message}`)}</p>}
                   </div>
                   <div>
-                    <label className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('contact.project_type')}</label>
-                    <select {...register('project_type')} className={inputClass} style={inputStyle(errors.project_type)}>
+                    <label htmlFor="contact-project_type" className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('contact.project_type')}</label>
+                    <select id="contact-project_type" {...register('project_type')} className={inputClass} style={inputStyle(errors.project_type)}>
                       <option value="">{t('contact.select_type')}</option>
                       {['residential','commercial','interior','exterior','hospitality','other'].map(type => (
                         <option key={type} value={type}>{t(`contact.${type}`)}</option>
@@ -109,8 +109,8 @@ export default function Contact() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('contact.message')}</label>
-                  <textarea {...register('message')} rows={6} className={inputClass} style={inputStyle(errors.message)} onFocus={e => e.target.style.borderColor = '#C9A14A'} onBlur={e => e.target.style.borderColor = errors.message ? '#ef4444' : 'var(--color-border)'} />
+                  <label htmlFor="contact-message" className="block text-sm mb-1" style={{ color: 'var(--color-text-secondary)' }}>{t('contact.message')}</label>
+                  <textarea id="contact-message" {...register('message')} rows={6} className={inputClass} style={inputStyle(errors.message)} onFocus={e => e.target.style.borderColor = '#C9A14A'} onBlur={e => e.target.style.borderColor = errors.message ? '#ef4444' : 'var(--color-border)'} />
                   {errors.message && <p className="text-xs text-red-500 mt-1">{t('contact.required')}</p>}
                 </div>
                 {serverError && <p className="text-red-500 text-sm">{serverError}</p>}

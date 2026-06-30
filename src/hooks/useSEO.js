@@ -64,6 +64,7 @@ export function useSEO({
     setMeta('property', 'og:locale',      isAr ? 'ar_SY' : 'en_US');
     setMeta('property', 'og:locale:alternate', isAr ? 'en_US' : 'ar_SY');
     setMeta('property', 'og:site_name',   'Sardini Studio | سرديني استوديو');
+    setMeta('property', 'og:url',         canonical || window.location.href.split('?')[0]);
 
     // Twitter Card
     setMeta('name', 'twitter:card',        'summary_large_image');

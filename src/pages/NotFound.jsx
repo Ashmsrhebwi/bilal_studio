@@ -2,9 +2,15 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Home } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
 
 export default function NotFound() {
   const { t } = useTranslation();
+
+  useSEO({
+    titleFallback: `${t('not_found.title')} — ${t('not_found.subtitle')}`,
+    descFallback: t('not_found.text'),
+  });
 
   return (
     <main className="min-h-screen flex items-center justify-center px-4">

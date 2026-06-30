@@ -161,12 +161,13 @@ export default function Footer() {
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     placeholder={t('footer.email_placeholder')}
+                    aria-label={t('footer.email_placeholder')}
                     className="flex-1 px-3 py-2 text-sm bg-transparent border outline-none text-white placeholder-gray-600"
                     style={{ borderColor: '#2a2620' }}
                     onFocus={e => e.target.style.borderColor = '#C9A14A'}
                     onBlur={e => e.target.style.borderColor = '#2a2620'}
                   />
-                  <button type="submit" className="px-3 py-2" style={{ background: '#C9A14A', color: '#0E0E0E' }}>
+                  <button type="submit" aria-label={t('footer.subscribe')} className="px-3 py-2" style={{ background: '#C9A14A', color: '#0E0E0E' }}>
                     <Send size={16} />
                   </button>
                 </form>

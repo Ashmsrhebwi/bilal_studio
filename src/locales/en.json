@@ -45,7 +45,10 @@
   "testimonials_preview": {
     "title": "What Our Clients Say",
     "subtitle": "Real words from real clients who trusted us to turn their vision into something extraordinary",
-    "view_all": "View All Testimonials"
+    "view_all": "View All Testimonials",
+    "prev": "Previous testimonial",
+    "next": "Next testimonial",
+    "go_to": "Go to testimonial {{index}}"
   },
   "cta_section": {
     "title": "Your Project Deserves the Best Design",
