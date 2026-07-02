@@ -9,8 +9,10 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => array_filter(explode(',', env('FRONTEND_URL', 'http://localhost:5173'))),
-
+'allowed_origins' => [
+    'http://localhost:5173',
+    'https://bilal-sardini.vercel.app',
+],
     'allowed_origins_patterns' => [],
 
     'allowed_headers' => ['*'],
