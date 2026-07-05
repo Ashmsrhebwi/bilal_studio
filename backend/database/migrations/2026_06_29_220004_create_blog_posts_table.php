@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('author_ar')->nullable();
             $table->string('author_en')->nullable();
             $table->integer('read_time')->default(5);
-            $table->enum('status', ['published', 'draft'])->default('draft');
+            $table->string('status')->default('draft');
             $table->timestamp('published_at')->nullable();
             $table->string('meta_title_ar')->nullable();
             $table->string('meta_title_en')->nullable();

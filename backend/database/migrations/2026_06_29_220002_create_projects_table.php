@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('after_image')->nullable();
             $table->string('video_url')->nullable();
             $table->boolean('featured')->default(false);
-            $table->enum('status', ['published', 'draft'])->default('draft');
+            $table->string('status')->default('draft');
             $table->integer('sort_order')->default(0);
             $table->string('meta_title_ar')->nullable();
             $table->string('meta_title_en')->nullable();

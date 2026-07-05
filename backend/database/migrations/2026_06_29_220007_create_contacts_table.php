@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('project_type')->nullable();
             $table->text('message');
-            $table->enum('status', ['new', 'read', 'replied', 'archived'])->default('new');
+            $table->string('status')->default('new');
             $table->text('admin_notes')->nullable();
             $table->string('ip_address', 45)->nullable();
             $table->timestamps();
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->date('preferred_date')->nullable();
             $table->string('preferred_time')->nullable();
             $table->text('notes')->nullable();
-            $table->enum('status', ['pending', 'confirmed', 'cancelled', 'completed'])->default('pending');
+            $table->string('status')->default('pending');
             $table->text('admin_notes')->nullable();
             $table->string('ip_address', 45)->nullable();
             $table->timestamps();
