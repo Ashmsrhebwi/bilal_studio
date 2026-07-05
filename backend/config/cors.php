@@ -9,11 +9,15 @@ return [
 
     'allowed_methods' => ['*'],
 
-'allowed_origins' => [
-    'http://localhost:5173',
-    'https://bilal-sardini.vercel.app',
-],
-    'allowed_origins_patterns' => [],
+    'allowed_origins' => [
+        'http://localhost:5173',
+        'https://bilal-sardini.vercel.app',
+    ],
+
+    // Covers all Vercel preview/branch deploy URLs: bilal-sardini-xxx-user.vercel.app
+    'allowed_origins_patterns' => [
+        '#^https://bilal-sardini.*\.vercel\.app$#',
+    ],
 
     'allowed_headers' => ['*'],
 
@@ -21,6 +25,7 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => true,
+    // false: we use token-based auth (Sanctum Bearer tokens), not cookies/sessions
+    'supports_credentials' => false,
 
 ];
