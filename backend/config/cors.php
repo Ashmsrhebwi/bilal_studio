@@ -12,11 +12,12 @@ return [
     'allowed_origins' => [
         'http://localhost:5173',
         'https://bilal-sardini.vercel.app',
+        'https://bilal-studio.vercel.app',
     ],
 
-    // Covers all Vercel preview/branch deploy URLs: bilal-sardini-xxx-user.vercel.app
+    // Covers all Vercel preview/branch deploy URLs for both project names
     'allowed_origins_patterns' => [
-        '#^https://bilal-sardini.*\.vercel\.app$#',
+        '#^https://bilal-(sardini|studio).*\.vercel\.app$#',
     ],
 
     'allowed_headers' => ['*'],
