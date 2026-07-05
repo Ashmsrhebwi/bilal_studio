@@ -1,4 +1,4 @@
-FROM php:8.3-apache
+FROM php:8.4-apache
 
 # 1. Install system dependencies & PostgreSQL dev libraries
 RUN apt-get update && apt-get install -y \
@@ -44,20 +44,20 @@ RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available
 # Also set ServerName localhost to avoid apache startup warnings
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
     { \
-      echo "<Directory /var/www/html/public>"; \
-      echo "    AllowOverride All"; \
-      echo "    Require all granted"; \
-      echo "</Directory>"; \
+    echo "<Directory /var/www/html/public>"; \
+    echo "    AllowOverride All"; \
+    echo "    Require all granted"; \
+    echo "</Directory>"; \
     } >> /etc/apache2/sites-available/000-default.conf
 
 # 6. Create a startup script to run migrations and cache configs before starting Apache
 RUN echo '#!/bin/bash\n\
-php artisan config:cache\n\
-php artisan route:cache\n\
-php artisan view:cache\n\
-php artisan migrate --force\n\
-exec apache2-foreground\n\
-' > /usr/local/bin/start.sh && chmod +x /usr/local/bin/start.sh
+    php artisan config:cache\n\
+    php artisan route:cache\n\
+    php artisan view:cache\n\
+    php artisan migrate --force\n\
+    exec apache2-foreground\n\
+    ' > /usr/local/bin/start.sh && chmod +x /usr/local/bin/start.sh
 
 # Expose the PORT variable default (Render will override this at runtime)
 ENV PORT=8000
