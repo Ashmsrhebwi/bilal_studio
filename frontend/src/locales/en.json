@@ -1,0 +1,329 @@
+{
+  "nav": {
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "services": "Services",
+    "about": "About",
+    "process": "Our Process",
+    "testimonials": "Testimonials",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "calculator": "Cost Calculator",
+    "book": "Book Consultation"
+  },
+  "hero": {
+    "office": "Sardini Studio",
+    "tagline": "We Shape Space — We Breathe Life Into It",
+    "subtitle": "From the first sketch to the final detail — we design spaces that tell your story and carry your soul",
+    "cta_portfolio": "Explore Our Work",
+    "cta_consult": "Book a Free Consultation",
+    "scroll_down": "Discover More",
+    "badge": "Architectural Design Studio — Aleppo, Syria"
+  },
+  "stats": {
+    "projects": "Projects Completed",
+    "years": "Years of Experience",
+    "clients": "Satisfied Clients",
+    "awards": "Excellence Awards",
+    "countries": "Countries Served"
+  },
+  "featured": {
+    "title": "Featured Projects",
+    "subtitle": "A selection of our work reflecting our vision of merging aesthetics with function and identity",
+    "view_all": "View All Projects",
+    "view_project": "View Project"
+  },
+  "services_preview": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive architectural solutions from first concept to final handover — every project has its own language",
+    "view_all": "View All Services"
+  },
+  "partners": {
+    "title": "Our Partners in Success"
+  },
+  "testimonials_preview": {
+    "title": "What Our Clients Say",
+    "subtitle": "Real words from real clients who trusted us to turn their vision into something extraordinary",
+    "view_all": "View All Testimonials",
+    "prev": "Previous testimonial",
+    "next": "Next testimonial",
+    "go_to": "Go to testimonial {{index}}"
+  },
+  "cta_section": {
+    "title": "Your Project Deserves the Best Design",
+    "subtitle": "Are you ready to turn your vision into something extraordinary? Reach out today and begin a design journey you'll never forget",
+    "btn_contact": "Contact Us",
+    "btn_book": "Book a Free Consultation"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Over fifteen years of architectural creativity — every project is a story worth telling",
+    "all": "All",
+    "residential": "Residential",
+    "commercial": "Commercial",
+    "interior": "Interior Design",
+    "exterior": "Exterior Design",
+    "hospitality": "Hospitality",
+    "no_results": "No projects in this category yet",
+    "view_details": "View Details"
+  },
+  "project_detail": {
+    "location": "Location",
+    "area": "Area",
+    "year": "Year",
+    "services": "Services Provided",
+    "description": "Project Description",
+    "gallery": "Photo Gallery",
+    "before_after": "Before & After",
+    "before": "Before",
+    "after": "After",
+    "back": "Back to Portfolio",
+    "related": "Related Projects",
+    "sqm": "m²"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "End-to-end design solutions — from the first idea to the key in your hand",
+    "architectural": {
+      "name": "Architectural Design",
+      "desc": "Architectural design is the soul of a project before it has a body. We begin with site analysis and end with a complete set of precise construction documents — every drawing reflecting your project's identity.",
+      "details": "We deliver concept sketches and design narrative, full architectural drawing sets, construction documents for permits and execution, and complete coordination with structural, electrical, and MEP engineers."
+    },
+    "interior": {
+      "name": "Interior Design",
+      "desc": "Interiors are where people truly live — which makes interior design both an aesthetic and a deeply human responsibility. Every corner tells a story, every detail has meaning.",
+      "details": "We design space layouts and furniture arrangements, select colors, materials, and fabrics, design lighting and ceiling systems, plan built-in cabinetry, and supervise execution down to the last decorative detail."
+    },
+    "exterior": {
+      "name": "Exterior & Landscape Design",
+      "desc": "A building's exterior is its introduction to the world, and its landscape is the natural extension of those who inhabit it. We design facades that stand apart and gardens that speak of their owners.",
+      "details": "Full architectural facade design, garden and pool design, water features, exterior lighting design, and selection of exterior materials compatible with climate and context."
+    },
+    "supervision": {
+      "name": "Construction Supervision",
+      "desc": "An exceptional design is only complete when the execution matches its ambition. We ensure that what was drawn on paper is built with the same care and precision it deserves.",
+      "details": "Regular site visits, quality control of materials and workmanship, contractor and supplier coordination, financial claim reviews, and periodic progress reports for the client."
+    },
+    "rendering": {
+      "name": "3D Visualization",
+      "desc": "Never build what you cannot see first. We produce photorealistic 3D visuals that give you a complete, immersive experience of your project — with full freedom to revise before anything is built.",
+      "details": "Photorealistic still renders, interactive virtual walkthroughs, natural and artificial lighting simulation, color and material testing, and marketing animations for larger projects."
+    },
+    "consulting": {
+      "name": "Architectural Consultancy",
+      "desc": "Sometimes you don't need a full project — you need the right expert opinion at the right moment. One hour with an expert can save months of costly mistakes.",
+      "details": "Pre-purchase property feasibility, drawing review and error auditing, facade assessment and improvement recommendations, renovation and expansion consultancy, and technical tender specifications."
+    },
+    "learn_more": "Learn More",
+    "get_quote": "Get a Quote"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "A journey of architectural passion toward excellence and innovation — since 2009",
+    "bio_title": "Arch. Bilal Sardini",
+    "bio_role": "Founder & Principal Architect — Sardini Studio",
+    "bio_text": "Sardini Studio is an architectural design practice founded in Aleppo in 2009 by architect Bilal Sardini, built on a single conviction: every building is a poem written in space, and every interior is an invitation to transform stone and concrete into a deeply human experience.",
+    "philosophy_title": "Our Design Philosophy",
+    "philosophy_text": "Over fifteen years, we have delivered more than 150 projects across Syria, the Gulf, and beyond — from luxury private villas and residential complexes to commercial centers and boutique hotels. Our philosophy is straightforward: true design is not measured by complexity, but by how honestly it speaks to the people who live within it. We unite contemporary aesthetics with authentic Arabic identity, and we begin every project the same way — by listening.",
+    "quote": "What sets Sardini Studio apart is not just what you see in the photographs — it's what you feel when you walk through the door.",
+    "experience": "Years of Experience",
+    "projects_done": "Projects Completed",
+    "team_size": "Specialist Team",
+    "timeline_title": "Our Journey Through the Years",
+    "education": "Education & Qualifications",
+    "certifications": "Professional Certifications",
+    "values_title": "Our Values",
+    "value_1_title": "Listen First",
+    "value_1_text": "Every project begins with a deep understanding of the person who will live in it — not the measurements.",
+    "value_2_title": "Precision in Detail",
+    "value_2_text": "Small details make the biggest difference. Nothing is left to chance.",
+    "value_3_title": "Full Transparency",
+    "value_3_text": "Our relationship with every client is built on complete clarity about costs, timelines, and expectations.",
+    "value_4_title": "Quality, Not Compromise",
+    "value_4_text": "We prefer fewer projects of higher quality over many projects of average quality."
+  },
+  "process": {
+    "title": "How We Work",
+    "subtitle": "A clear and transparent methodology — from the first meeting to the moment you hold the key",
+    "step1": {
+      "title": "Initial Consultation",
+      "desc": "We begin with an open conversation where we listen to your vision, understand your needs, and assess possibilities — with no obligation. This meeting is always free."
+    },
+    "step2": {
+      "title": "Site Study & Analysis",
+      "desc": "We visit the site, analyze its engineering, environmental, and regulatory conditions, and establish the foundational architectural brief."
+    },
+    "step3": {
+      "title": "Concept Design",
+      "desc": "We present two to three distinct design directions — each with its own character — so you can choose the one that truly speaks to you."
+    },
+    "step4": {
+      "title": "Design Development",
+      "desc": "Once the concept is chosen, we develop it across all technical and aesthetic dimensions and complete the full drawing set."
+    },
+    "step5": {
+      "title": "3D Visualization",
+      "desc": "We produce photorealistic 3D renders that show you exactly how the project will look — before a single wall is built."
+    },
+    "step6": {
+      "title": "Execution & Follow-up",
+      "desc": "We supervise construction and follow every stage to ensure each detail is delivered with the precision and quality it deserves."
+    }
+  },
+  "testimonials": {
+    "title": "Client Testimonials",
+    "subtitle": "Our clients' trust is the greatest recognition we receive — every word inspires us to go further"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Ideas and inspiration from the world of architecture and interior design — content that adds real value",
+    "read_more": "Read More",
+    "min_read": "min read",
+    "categories": "Categories",
+    "recent": "Recent Articles",
+    "share": "Share Article",
+    "back": "Back to Blog",
+    "featured_badge": "Featured Article",
+    "by": "By",
+    "published": "Published on"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Clear and direct answers to the questions our clients ask most before starting their projects",
+    "still_have_question": "Still have a question?",
+    "contact_us": "Contact us directly"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Whether you have a complete project in mind or just a first idea — we welcome you. A member of our team will reach out within 24 hours",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "project_type": "Project Type",
+    "message": "Your Message",
+    "message_placeholder": "Tell us about your project — the space, location, any initial ideas...",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Your message was sent successfully! We'll reach out within 24 hours.",
+    "error": "Something went wrong. Please try again or reach out via WhatsApp.",
+    "address": "Address",
+    "address_value": "Aleppo, Syria — Al-Mutanabbi St., Building 14",
+    "phone_label": "Phone",
+    "email_label": "Email",
+    "hours": "Working Hours",
+    "hours_value": "Sat – Thu: 9 AM – 6 PM",
+    "whatsapp": "Chat on WhatsApp",
+    "select_type": "Select project type",
+    "residential": "Residential (Villa / Apartment)",
+    "commercial": "Commercial (Office / Complex)",
+    "interior": "Interior Design",
+    "exterior": "Exterior & Landscape Design",
+    "hospitality": "Hotel or Restaurant",
+    "other": "Other",
+    "required": "This field is required",
+    "invalid_email": "Please enter a valid email address",
+    "invalid_phone": "Please enter a valid phone number",
+    "free_consult_badge": "First consultation is always free"
+  },
+  "calculator": {
+    "title": "Approximate Cost Calculator",
+    "subtitle": "Get a preliminary estimate for your project in seconds — no obligation",
+    "area": "Area (m²)",
+    "area_placeholder": "e.g. 300",
+    "min_area": "Area must be at least 50m²",
+    "type": "Project Type",
+    "quality": "Finish Level",
+    "standard": "Economy",
+    "premium": "Premium",
+    "luxury": "Luxury",
+    "calculate": "Calculate Estimate",
+    "result_title": "Preliminary Estimate",
+    "disclaimer": "This estimate is approximate and for guidance only. For an accurate and binding quote, please contact us directly.",
+    "contact_us": "Get an Accurate Quote",
+    "per_sqm": "Price per m²",
+    "total": "Approximate Total Cost",
+    "currency": "SYP"
+  },
+  "book": {
+    "title": "Book a Free Consultation",
+    "subtitle": "Speak with our architect and discover how we can transform your project into something extraordinary",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "date": "Preferred Date",
+    "time": "Preferred Time",
+    "project_type": "Project Type",
+    "notes": "Tell us more about your project (optional)",
+    "notes_placeholder": "Approximate area, location, any ideas or inspiration...",
+    "submit": "Confirm Consultation Booking",
+    "success": "Your appointment is registered! We'll reach out within hours to confirm.",
+    "morning": "Morning (9 AM – 12 PM)",
+    "afternoon": "Afternoon (12 PM – 3 PM)",
+    "evening": "Evening (3 PM – 6 PM)",
+    "error": "Something went wrong. Please try again or reach out via WhatsApp."
+  },
+  "footer": {
+    "description": "Sardini Studio — an architectural design practice in Aleppo, Syria. Designing spaces that unite beauty, function, and identity since 2009.",
+    "quick_links": "Quick Links",
+    "services": "Services",
+    "contact": "Contact",
+    "newsletter": "Newsletter",
+    "newsletter_text": "Subscribe to receive our latest projects, articles, and design insights — once a month",
+    "subscribe": "Subscribe Now",
+    "email_placeholder": "Your email address",
+    "subscribe_success": "Thank you! You're now subscribed.",
+    "rights": "All rights reserved",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "made_with": "Crafted with passion in Aleppo",
+    "newsletter_error": "Subscription failed. Please try again later."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try Again",
+    "back_to_top": "Back to Top",
+    "dark_mode": "Dark Mode",
+    "light_mode": "Light Mode",
+    "lang_switch": "العربية",
+    "close": "Close",
+    "prev": "Previous",
+    "next": "Next",
+    "search": "Search",
+    "no_results": "No results found",
+    "see_more": "See More",
+    "whatsapp": "WhatsApp",
+    "whatsapp_message": "Hello, I'd like to inquire about your services"
+  },
+  "not_found": {
+    "title": "404",
+    "subtitle": "This Page Doesn't Exist",
+    "text": "Sorry, the page you're looking for doesn't exist or may have been moved. But your beautiful project is still waiting.",
+    "back_home": "Back to Home"
+  },
+  "seo": {
+    "home_title": "Architectural Designer Aleppo | Sardini Studio",
+    "home_desc": "Sardini Studio — architectural and interior design firm in Aleppo, Syria. Luxury design, 3D visualization, construction supervision. 150+ successful projects.",
+    "portfolio_title": "Portfolio — Architecture & Interior Design Projects | Sardini Studio",
+    "portfolio_desc": "Browse Sardini Studio's portfolio of architectural and interior design projects — residential, commercial, and hospitality across Syria and the Gulf.",
+    "services_title": "Services — Architecture, Interior Design & Supervision | Sardini Studio",
+    "services_desc": "Architectural design, interior design, 3D visualization, construction supervision, and consultancy in Aleppo, Syria.",
+    "about_title": "About Us | Sardini Studio — Architectural Firm Aleppo Since 2009",
+    "about_desc": "Sardini Studio — founded in Aleppo in 2009, with 150+ projects across Syria, the Gulf, and the Arab world. Architecture, interior design, and 3D visualization.",
+    "contact_title": "Contact Us | Sardini Studio — Book a Free Consultation",
+    "contact_desc": "Contact Sardini Studio in Aleppo — book a free consultation for your architecture or interior design project. We respond within 24 hours.",
+    "blog_title": "Blog — Architecture & Interior Design Tips | Sardini Studio",
+    "blog_desc": "Design tips and ideas from Sardini Studio's experts in Aleppo — stay updated on the latest architecture and interior design trends.",
+    "faq_title": "FAQ | Sardini Studio Architectural Design",
+    "faq_desc": "Answers to the most common questions about architectural and interior design, pricing, timelines, and service areas — Sardini Studio.",
+    "process_title": "Our Design Process | Sardini Studio Aleppo",
+    "process_desc": "Sardini Studio's 6-step design process — from a free first consultation to on-site construction supervision.",
+    "testimonials_title": "Client Testimonials | Sardini Studio Aleppo",
+    "testimonials_desc": "Real client stories from Sardini Studio — villas, commercial complexes, hotels, and interior projects across Syria and the Gulf.",
+    "calculator_title": "Design Cost Calculator | Sardini Studio",
+    "calculator_desc": "Get a free preliminary cost estimate for your architectural or interior design project in seconds — no commitment required.",
+    "book_title": "Book a Free Consultation | Sardini Studio",
+    "book_desc": "Schedule your free architectural consultation with Bilal Sardini — Aleppo's leading design studio since 2009."
+  }
+}
