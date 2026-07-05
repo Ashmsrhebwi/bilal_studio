@@ -40,6 +40,16 @@ RUN chown -R www-data:www-data /var/www/html \
 RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
 
+# AllowOverride All for the public directory so Laravel's .htaccess works (fixes 404s)
+# Also set ServerName localhost to avoid apache startup warnings
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
+    { \
+      echo "<Directory /var/www/html/public>"; \
+      echo "    AllowOverride All"; \
+      echo "    Require all granted"; \
+      echo "</Directory>"; \
+    } >> /etc/apache2/sites-available/000-default.conf
+
 # 6. Create a startup script to run migrations and cache configs before starting Apache
 RUN echo '#!/bin/bash\n\
 php artisan config:cache\n\
